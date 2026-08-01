@@ -16,6 +16,8 @@ build/
 
 # ── Data files — NEVER commit raw, interim, processed, or export data ─────────
 data/raw/*
+# Exception: hand-curated reference files that can't be re-downloaded
+!data/raw/state_reference.csv
 data/interim/*
 data/processed/*
 data/project.duckdb

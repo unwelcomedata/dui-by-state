@@ -1,0 +1,52 @@
+state_fips,state_abbr,state_name,lat,lng,land_area_sq_mi,water_area_sq_mi,region,division
+01,AL,Alabama,32.7794,−86.8287,50645,1673,South,East South Central
+02,AK,Alaska,64.0685,−153.3693,571951,94743,West,Pacific
+04,AZ,Arizona,34.2744,−111.6602,113594,364,West,Mountain
+05,AR,Arkansas,34.8938,−92.4426,52035,1107,South,West South Central
+06,CA,California,37.1841,−119.4696,155779,7916,West,Pacific
+08,CO,Colorado,38.9979,−105.5506,103642,371,West,Mountain
+09,CT,Connecticut,41.6219,−72.7273,4842,698,Northeast,New England
+10,DE,Delaware,38.9896,−75.5050,1949,535,South,South Atlantic
+11,DC,District of Columbia,38.9041,−77.0176,61,7,South,South Atlantic
+12,FL,Florida,28.6305,−82.4497,53625,12133,South,South Atlantic
+13,GA,Georgia,32.6415,−83.4426,57513,1522,South,South Atlantic
+15,HI,Hawaii,20.2927,−156.3737,6423,4509,West,Pacific
+16,ID,Idaho,44.3509,−114.6130,82643,823,West,Mountain
+17,IL,Illinois,40.0417,−89.1965,55519,2395,Midwest,East North Central
+18,IN,Indiana,39.8942,−86.2816,35826,551,Midwest,East North Central
+19,IA,Iowa,42.0751,−93.4960,55857,416,Midwest,West North Central
+20,KS,Kansas,38.4937,−98.3804,81759,520,Midwest,West North Central
+21,KY,Kentucky,37.5347,−85.3021,39486,921,South,East South Central
+22,LA,Louisiana,31.0689,−91.9968,43204,9174,South,West South Central
+23,ME,Maine,45.3695,−69.2428,30843,4523,Northeast,New England
+24,MD,Maryland,38.9466,−76.6744,9707,2669,South,South Atlantic
+25,MA,Massachusetts,42.3788,−71.9922,7800,2754,Northeast,New England
+26,MI,Michigan,44.3467,−85.4102,56804,39980,Midwest,East North Central
+27,MN,Minnesota,46.2807,−94.3053,79627,7326,Midwest,West North Central
+28,MS,Mississippi,32.7364,−89.6678,46923,1520,South,East South Central
+29,MO,Missouri,38.3566,−92.4580,68742,811,Midwest,West North Central
+30,MT,Montana,46.8797,−110.3626,145546,1490,West,Mountain
+31,NE,Nebraska,41.5378,−99.7951,76824,481,Midwest,West North Central
+32,NV,Nevada,39.3289,−116.6312,109781,735,West,Mountain
+33,NH,New Hampshire,43.6805,−71.5811,8953,397,Northeast,New England
+34,NJ,New Jersey,40.1907,−74.6728,7354,1303,Northeast,Middle Atlantic
+35,NM,New Mexico,34.4071,−106.1126,121298,292,West,Mountain
+36,NY,New York,42.9538,−75.5268,47126,7429,Northeast,Middle Atlantic
+37,NC,North Carolina,35.5557,−79.3877,48618,5108,South,South Atlantic
+38,ND,North Dakota,47.4501,−100.4659,69001,1698,Midwest,West North Central
+39,OH,Ohio,40.2862,−82.7937,40861,3877,Midwest,East North Central
+40,OK,Oklahoma,35.5889,−97.4943,68595,1231,South,West South Central
+41,OR,Oregon,43.9336,−120.5583,95988,2384,West,Pacific
+42,PA,Pennsylvania,40.8781,−77.7996,44743,1239,Northeast,Middle Atlantic
+44,RI,Rhode Island,41.6762,−71.5562,1034,500,Northeast,New England
+45,SC,South Carolina,33.9169,−80.8964,30061,1911,South,South Atlantic
+46,SD,South Dakota,44.4443,−100.2263,75811,1231,Midwest,West North Central
+47,TN,Tennessee,35.8580,−86.3505,41235,926,South,East South Central
+48,TX,Texas,31.4757,−99.3312,261232,7365,South,West South Central
+49,UT,Utah,39.3210,−111.0937,82170,2755,West,Mountain
+50,VT,Vermont,44.0687,−72.6658,9217,365,Northeast,New England
+51,VA,Virginia,37.5215,−78.8537,39490,3285,South,South Atlantic
+53,WA,Washington,47.3826,−120.4472,66456,4842,West,Pacific
+54,WV,West Virginia,38.6409,−80.6227,24038,152,South,South Atlantic
+55,WI,Wisconsin,44.6243,−89.9941,54158,11339,Midwest,East North Central
+56,WY,Wyoming,42.9957,−107.5512,97093,713,West,Mountain

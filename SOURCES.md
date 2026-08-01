@@ -1,0 +1,125 @@
+# Data Sources — dui-by-state
+
+All data used in this project is from official U.S. government sources or
+hand-curated from those same sources. No data is sourced from Wikipedia or
+other crowd-edited references.
+
+---
+
+## State Reference Data
+
+### State FIPS Codes & Abbreviations
+- **Source:** U.S. Census Bureau
+- **File:** `state.txt`
+- **URL:** https://www2.census.gov/geo/docs/reference/state.txt
+- **Format:** Pipe-delimited text
+- **Fields used:** STATE (FIPS numeric), STUSAB (2-letter abbreviation), STATE_NAME
+- **License:** Public domain (U.S. government work)
+- **Notes:** Official FIPS 5-2 state codes. Includes 50 states + DC + territories;
+  project filters to 50 states + DC only.
+
+### State Geographic Reference (lat/lng centroids, land area, Census region/division)
+- **Source:** U.S. Census Bureau — 2024 Gazetteer Files (internal point coordinates
+  and area measurements)
+- **URL:** https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html
+- **Format:** Hand-curated CSV stored at `data/raw/state_reference.csv`
+- **Fields:** state_fips, state_abbr, state_name, lat, lng, land_area_sq_mi,
+  water_area_sq_mi, region, division
+- **License:** Public domain (U.S. government work)
+- **Notes:** The Gazetteer file is WAF-protected against automated download.
+  Values were transcribed manually from the official Census Gazetteer and the
+  Census Bureau's regional classification. Lat/lng are Census internal points
+  (not geographic centroids, not capital cities). Area figures are from the
+  2020 Census. Regions and divisions follow the standard Census Bureau
+  classification unchanged since 1984.
+- **Last verified:** 2026-08-01
+
+### State Population Estimates
+- **Source:** U.S. Census Bureau — Population and Housing Unit Estimates
+- **File:** `NST-EST2024-ALLDATA.csv`
+- **URL:** https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/totals/NST-EST2024-ALLDATA.csv
+- **Format:** CSV
+- **Fields used:** NAME, STATE (FIPS), POPESTIMATE2020–POPESTIMATE2024
+- **License:** Public domain (U.S. government work)
+- **Notes:** Annual state population estimates July 1 each year. 2024 estimates
+  are the most recent available. Summary level 40 = state; project filters out
+  national total (SUMLEV=10) and territories (STATE FIPS > 56).
+
+---
+
+## DUI / Traffic Safety Data
+
+### NHTSA FARS — Fatality Analysis Reporting System (2015–2024)
+- **Source:** National Highway Traffic Safety Administration (NHTSA)
+- **URL pattern:** https://static.nhtsa.gov/nhtsa/downloads/FARS/{year}/National/FARS{year}NationalCSV.zip
+- **Format:** ZIP containing CSV files
+- **File used:** `accident.CSV` within each annual ZIP
+- **Key fields:** ST_CASE, STATE, STATENAME, YEAR, FATALS, DRUNK_DR
+- **License:** Public domain (U.S. government work)
+- **Notes:** DRUNK_DR > 0 indicates at least one alcohol-impaired driver was
+  involved in the crash. This is the gold-standard dataset for alcohol-impaired
+  driving fatalities in the United States. Data covers all 50 states + DC.
+  2024 data was first released April 2026.
+- **Coverage:** 2015–2024 (10 years)
+
+### NHTSA Traffic Safety Facts — State Alcohol-Impaired-Driving Estimates
+- **Source:** National Highway Traffic Safety Administration (NHTSA) — CrashStats
+- **URL:** https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813813
+- **Format:** PDF
+- **License:** Public domain (U.S. government work)
+- **Notes:** Pre-aggregated state-level summary published annually. Includes
+  alcohol-impaired fatalities per 100 million vehicle miles traveled (VMT).
+  Used to cross-check FARS aggregate calculations.
+
+---
+
+## DUI Laws & Penalties
+
+### NCSL — Per Se DUI/DWI Laws
+- **Source:** National Conference of State Legislatures (NCSL)
+- **URL:** https://www.ncsl.org/transportation/dui-dwi-per-se-laws
+- **Format:** HTML table (scraped)
+- **License:** Public domain legislative reference
+- **Notes:** Most authoritative compiled source for state per se BAC laws.
+  NCSL is a nonpartisan organization serving state legislatures.
+
+### roadlawguide.com — DUI Penalties by State
+- **Source:** roadlawguide.com
+- **URL:** https://roadlawguide.com/dui-dwi-laws/penalties-by-state/
+- **Format:** HTML (scraped)
+- **Notes:** Structured first-offense penalty comparison table. Used as a
+  secondary cross-reference. Always verify against official state statutes
+  before publishing.
+
+### ailawyer.pro — DUI Penalties by State
+- **Source:** ailawyer.pro
+- **URL:** https://ailawyer.pro/tools/dui-penalties-by-state
+- **Format:** HTML (scraped)
+- **Notes:** Structured penalty data per state for 2026. Used as tertiary
+  cross-reference. Always verify against official state statutes.
+
+---
+
+## Notes on Data Quality & Verification
+
+- All government source files are saved verbatim to `data/raw/` and never modified.
+- Any discrepancies between scraped law/penalty sources should be resolved by
+  consulting the official state statute directly.
+- Population figures are estimates; the decennial Census (2020) is the only
+  complete enumeration.
+- FARS fatality figures may be revised in subsequent NHTSA releases; figures
+  here reflect the first annual release.
+
+---
+
+## Source Provenance in DuckDB
+
+Every table in `data/project.duckdb` has a corresponding entry in the
+`_sources` metadata table:
+
+```sql
+SELECT * FROM _sources;
+```
+
+This table records the table name, source name, URL, license, and retrieval
+date for every dataset loaded into the database.

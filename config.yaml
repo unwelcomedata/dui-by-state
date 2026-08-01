@@ -14,22 +14,73 @@ settings:
   duckdb_file: data/project.duckdb   # single file DB for the project
 
 sources:
-  # Define each data source here before ingesting.
-  # url:        full URL to fetch
-  # type:       html_table | html_scrape | csv | json
-  # table_index: (html_table only) zero-based index of the target <table>
-  # js_render:  true if the page requires Playwright (JS-rendered)
-  # Example:
-  # fatalities:
-  #   url: https://example.gov/data/fatalities
-  #   type: html_table
-  #   table_index: 0
-  #   js_render: false
+
+  # ── State reference ────────────────────────────────────────────────────────
+  # Census Gazetteer 2024: FIPS, name, abbr, land/water area sq mi, lat/lng centroid
+  gazetteer:
+    url: https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_state_national.txt
+    type: csv
+    notes: "Tab-delimited. Columns: USPS, GEOID, ANSICODE, NAME, ALAND, AWATER, ALAND_SQMI, AWATER_SQMI, INTPTLAT, INTPTLONG"
+
+  # Census Population Estimates 2023 via API (no key needed for state totals)
+  population:
+    url: https://api.census.gov/data/2023/pep/population?get=NAME,POP_2023&for=state:*
+    type: json
+    notes: "Returns JSON array. Row 0 is header. Filter out territories after load."
+
+  # Census region/division classifications
+  census_regions:
+    url: https://raw.githubusercontent.com/cphalpert/census-regions/master/us%20census%20bureau%20regions%20and%20divisions.csv
+    type: csv
+    notes: "State, State Code, Region, Division"
+
+  # ── NHTSA fatalities ────────────────────────────────────────────────────────
+  # Full FARS 2024 national CSV zip — accident-level data, filter to alcohol crashes
+  fars_2024:
+    url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2024/National/FARS2024NationalCSV.zip
+    type: zip_csv
+    target_file: accident.CSV
+    notes: "DRUNK_DR > 0 flags alcohol-involved crash. STATE is FIPS numeric."
+
+  # Pre-aggregated NHTSA Traffic Safety Facts — state-level summary table (2024)
+  # This is the PDF that has the clean 52-row table; we scrape the HTML version
+  nhtsa_state_summary_2024:
+    url: https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813813
+    type: pdf_table
+    notes: "2024 State Alcohol-Impaired-Driving Estimates. Manual step if PDF scrape fails."
+
+  # NHTSA FARS historical state aggregates (NHTSA publishes these as Excel)
+  fars_trends:
+    url: https://www-fars.nhtsa.dot.gov/States/StatesFatalitiesAndRates.aspx
+    type: html_table
+    table_index: 0
+    js_render: false
+    notes: "Historical fatalities and rates by state, multiple years."
+
+  # ── DUI laws & penalties ───────────────────────────────────────────────────
+  dui_laws_ncsl:
+    url: https://www.ncsl.org/transportation/dui-dwi-per-se-laws
+    type: html_table
+    table_index: 0
+    js_render: false
+    notes: "NCSL per se BAC laws by state. Most authoritative legislative source."
+
+  dui_penalties_roadlaw:
+    url: https://roadlawguide.com/dui-dwi-laws/penalties-by-state/
+    type: html_scrape
+    js_render: false
+    notes: "Structured penalty table per state: jail, fine, suspension, IID, felony threshold."
+
+  dui_laws_justia:
+    url: https://www.justia.com/50-state-surveys/drunk-driving-dui-dwi/
+    type: html_scrape
+    js_render: false
+    notes: "Justia 50-state DUI/DWI survey with links to per-state detail pages."
 
 export:
   formats:
     - csv
     - xlsx
     - parquet
-  include_codebook: true       # generate a column-description markdown alongside each export
-  strip_pii_columns: []        # list column names to drop before packaging
+  include_codebook: true
+  strip_pii_columns: []
