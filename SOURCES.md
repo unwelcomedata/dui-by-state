@@ -100,6 +100,32 @@ other crowd-edited references.
 
 ---
 
+## DUI Arrests
+
+### FBI UCR — Arrests by Age, Sex, and Race, Summarized Yearly, 2023
+- **Source:** Federal Bureau of Investigation, Uniform Crime Reporting Program
+- **Distributor:** Inter-university Consortium for Political and Social Research (ICPSR)
+- **Study:** ICPSR 39298
+- **URL:** https://www.icpsr.umich.edu/web/NACJD/studies/39298
+- **Format:** Tab-separated values (extracted from ZIP)
+- **Fields used:** STATE (UCR code), OFFENSE (220=DUI), age/sex arrest counts
+- **License:** ICPSR Terms of Use — no redistribution of raw data; derivative
+  analysis and aggregated statistics permitted; citation required
+- **Coverage:** 50 states + DC, 2023 (agency-level, aggregated to state)
+- **Notes:** **Important limitation:** Not all law enforcement agencies report to
+  UCR. State-level totals reflect only reporting agencies and significantly
+  undercount actual arrests in most states. Coverage varies widely — some states
+  have near-complete reporting, others report only a fraction of agencies. Use
+  for relative comparisons and per-reporting-population rates, not as absolute
+  arrest counts. Always note reporting coverage when publishing.
+- **Citation:** United States Department of Justice. Federal Bureau of
+  Investigation. Uniform Crime Reporting Program Data: Arrests by Age, Sex,
+  and Race, Summarized Yearly, United States, 2023. Inter-university Consortium
+  for Political and Social Research [distributor], 2026.
+- **Retrieved:** 2026-08-02
+
+---
+
 ## Alcohol Consumption
 
 ### NIAAA — Apparent Per Capita Alcohol Consumption by State (2022)
