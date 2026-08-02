@@ -158,6 +158,42 @@ other crowd-edited references.
 
 ---
 
+## DUI Enforcement & Procedures
+
+### Sobriety Checkpoint Legality
+- **Source:** Multiple legal references (Governors Highway Safety Association,
+  state constitutions, case law)
+- **Method:** Compiled from verified legal references — 12 states ban checkpoints
+- **License:** Public legislative reference
+- **States banning checkpoints:** AK, ID, IA, MI, MN, MT, OR, RI, TX, WA, WI, WY
+
+### NCSL — State Ignition Interlock Laws (All-Offender)
+- **Source:** National Conference of State Legislatures
+- **URL:** https://www.ncsl.org/research/transportation/state-ignition-interlock-laws.aspx
+- **Format:** HTML table (scraped)
+- **License:** Public domain legislative reference
+- **Notes:** `all_offender` = "Yes" means IID mandatory for all DUI offenders
+  including first offense. 31 states as of 2024.
+
+### Implied Consent & Refusal Penalties
+- **Source:** Foundation for Advancing Alcohol Responsibility (responsibility.org)
+- **URL:** https://www.responsibility.org/wp-content/uploads/2026/01/Implied-Consent-Refusal-Penalties_Aug-2025.pdf
+- **Format:** PDF (96 pages of statutory text per state)
+- **License:** Public reference
+- **Notes:** All 50 states + DC have implied consent. 17 states impose criminal
+  penalties (jail/fine) for test refusal; all others impose administrative
+  suspension only. Wyoming is the only state without refusal penalties.
+
+### Open Container Laws
+- **Source:** NHTSA / federal compliance records
+- **Notes:** 40 states meet federal open container standards. 11 states allow
+  open alcohol containers in vehicles under some circumstances.
+
+### BAC Limits
+- **Notes:** All states: 0.08 g/dL. Utah: 0.05 g/dL (lowest in U.S., effective 2018).
+
+---
+
 ## Notes on Data Quality & Verification
 
 - All government source files are saved verbatim to `data/raw/` and never modified.
