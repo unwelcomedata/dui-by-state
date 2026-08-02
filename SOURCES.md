@@ -100,6 +100,38 @@ other crowd-edited references.
 
 ---
 
+## Alcohol Consumption
+
+### NIAAA — Apparent Per Capita Alcohol Consumption by State (2022)
+- **Source:** National Institute on Alcohol Abuse and Alcoholism (NIAAA)
+- **Publication:** Surveillance Report #121
+- **URL:** https://www.niaaa.nih.gov/sites/default/files/surveillance-report121.pdf
+- **Format:** PDF — Table 2 extracted via `pdfplumber`
+- **Fields used:** state_name, ethanol_per_capita_gallons_2022, consumption_decile_2022
+- **License:** Public domain (U.S. government work)
+- **Notes:** Per capita ethanol consumption in gallons for population ages 14+.
+  Includes beer, wine, spirits, and all beverages combined. Decile 1 = highest
+  consumption, 10 = lowest. National average 2022: 2.50 gallons.
+- **Coverage:** 50 states + DC, 2022
+
+---
+
+## NHTSA Imputed Alcohol Fatality Estimates
+
+### NHTSA Traffic Safety Facts — State Alcohol-Impaired-Driving Estimates 2024
+- **Source:** NHTSA — CrashStats
+- **URL:** https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813813
+- **Format:** PDF — Table 2 extracted via `pdfplumber`
+- **Fields used:** total_fatalities_2024, alcohol_impaired_fatalities_2024 (BAC≥.08),
+  pct_alcohol_impaired_2024, high_bac_fatalities_2024 (BAC≥.15), pct_high_bac_2024
+- **License:** Public domain (U.S. government work)
+- **Notes:** Statistically imputed estimates — NHTSA uses multiple imputation to
+  estimate BAC for untested drivers. More accurate than raw FARS coding. National
+  2024: 11,907 alcohol-impaired fatalities (30% of 39,254 total).
+- **Coverage:** 50 states + DC, 2024
+
+---
+
 ## Notes on Data Quality & Verification
 
 - All government source files are saved verbatim to `data/raw/` and never modified.
