@@ -206,6 +206,45 @@ other crowd-edited references.
 
 ---
 
+## Structural Controls (added for analysis depth)
+
+### FARS 2024 — Prior DWI Convictions & Crash Speed Limits
+- **Source:** NHTSA FARS 2024 — `vehicle.csv`
+- **URL:** https://static.nhtsa.gov/nhtsa/downloads/FARS/2024/National/FARS2024NationalCSV.zip
+- **Fields used:** `PREV_DWI` (prior DWI convictions), `VSPD_LIM` (posted speed limit
+  at crash location); joined with `drimpair.csv` code 9 to identify impaired drivers
+- **License:** Public domain (U.S. government work)
+- **Notes:** Aggregated to state level. `PREV_DWI` is a count of prior DWI
+  convictions found on the driver's record. Codes 98/99/998 = unknown and are
+  excluded. Key finding: the vast majority (85–95%) of impaired drivers in fatal
+  crashes have no prior DWI conviction on record.
+- **Coverage:** 50 states + DC, 2024
+- **Retrieved:** 2026-08-03
+
+### IIHS — Maximum Posted Speed Limits
+- **Source:** Insurance Institute for Highway Safety (IIHS)
+- **URL:** https://www.iihs.org/research-areas/speed/speed-limit-laws
+- **Format:** HTML table (transcribed)
+- **Fields used:** Rural interstate maximum posted speed limit per state
+- **License:** IIHS public reference
+- **Notes:** Reflects maximum posted limits including "specified segments of road"
+  where higher limits apply (e.g., Idaho 80 mph on some interstates). Range: 55 mph
+  (DC) to 85 mph (Texas).
+- **Last verified:** August 2026
+
+### FHWA — Vehicle Miles Traveled by State (2022)
+- **Source:** Federal Highway Administration — Highway Statistics 2022, Table VM-2
+- **URL:** https://www.fhwa.dot.gov/policyinformation/statistics/2022/vm2.cfm
+- **Format:** Tabular (transcribed from published table)
+- **Fields used:** Annual vehicle miles traveled in millions
+- **License:** Public domain (U.S. government work)
+- **Notes:** 2022 is the latest complete year available. Used to compute fatality
+  rate per 100 million VMT — the standard road safety comparison metric that
+  controls for how much driving occurs in a state.
+- **Retrieved:** 2026-08-03
+
+---
+
 ## Source Provenance in DuckDB
 
 Every table in `data/project.duckdb` has a corresponding entry in the

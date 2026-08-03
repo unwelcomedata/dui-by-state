@@ -532,7 +532,155 @@ register_source(
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# 7. WRITE _sources METADATA TABLE TO DUCKDB
+# 7. FARS PRIOR DWI & CRASH SPEED — structural controls from vehicle.csv
+#    Source: NHTSA FARS 2024 — vehicle.csv (PREV_DWI, VSPD_LIM)
+# ═══════════════════════════════════════════════════════════════════════════════
+print("\n[7/8] FARS prior DWI convictions & crash speed limits")
+
+fars_2024_zip = RAW / "fars_2024.zip"
+if fars_2024_zip.exists():
+    with zipfile.ZipFile(fars_2024_zip) as zf:
+        names_lower = {n.lower(): n for n in zf.namelist()}
+        veh_key = next(k for k in names_lower if "vehicle" in k and k.endswith(".csv"))
+        dri_key = next(k for k in names_lower if "drimpair" in k and k.endswith(".csv"))
+
+        with zf.open(names_lower[veh_key]) as f:
+            veh = pd.read_csv(f, usecols=["STATE", "ST_CASE", "VEH_NO", "PREV_DWI", "VSPD_LIM"])
+        with zf.open(names_lower[dri_key]) as f:
+            dri = pd.read_csv(f, usecols=["STATE", "ST_CASE", "VEH_NO", "DRIMPAIR"])
+
+    # Mark impaired vehicles (alcohol = code 9)
+    imp_vehs = dri[dri["DRIMPAIR"] == 9][["STATE", "ST_CASE", "VEH_NO"]].drop_duplicates()
+    imp_vehs["is_impaired"] = 1
+    veh = veh.merge(imp_vehs, on=["STATE", "ST_CASE", "VEH_NO"], how="left")
+    veh["is_impaired"] = veh["is_impaired"].fillna(0).astype(int)
+
+    # Filter known PREV_DWI (exclude 98, 99, 998 = unknown/not reported)
+    veh_known = veh[~veh["PREV_DWI"].isin([98, 99, 998])].copy()
+    veh_known["has_prior"] = (veh_known["PREV_DWI"] > 0).astype(int)
+
+    # All drivers by state
+    all_agg = veh_known.groupby("STATE").agg(
+        total_drivers_known_history=("has_prior", "count"),
+        drivers_with_prior_dwi=("has_prior", "sum"),
+    ).reset_index()
+
+    # Impaired drivers by state
+    imp_agg = veh_known[veh_known["is_impaired"] == 1].groupby("STATE").agg(
+        impaired_drivers_known_history=("has_prior", "count"),
+        impaired_with_prior_dwi=("has_prior", "sum"),
+    ).reset_index()
+
+    priors = all_agg.merge(imp_agg, on="STATE", how="left")
+    priors["pct_impaired_with_prior_dwi"] = (
+        priors["impaired_with_prior_dwi"] * 100.0 / priors["impaired_drivers_known_history"]
+    ).round(1)
+    priors["pct_all_with_prior_dwi"] = (
+        priors["drivers_with_prior_dwi"] * 100.0 / priors["total_drivers_known_history"]
+    ).round(1)
+
+    # Speed limit stats
+    veh_sp = veh[(veh["VSPD_LIM"] > 0) & (veh["VSPD_LIM"] < 98)]
+    speed_agg = veh_sp.groupby("STATE")["VSPD_LIM"].agg(
+        median_crash_speed_limit="median",
+        mean_crash_speed_limit="mean",
+    ).reset_index()
+    speed_agg["mean_crash_speed_limit"] = speed_agg["mean_crash_speed_limit"].round(1)
+
+    # Pct on high-speed roads (>= 55 mph)
+    high_sp = veh_sp[veh_sp["VSPD_LIM"] >= 55].groupby("STATE").size().reset_index(name="n_high")
+    total_sp = veh_sp.groupby("STATE").size().reset_index(name="n_total")
+    pct_high = high_sp.merge(total_sp, on="STATE")
+    pct_high["pct_crashes_high_speed"] = (pct_high["n_high"] * 100.0 / pct_high["n_total"]).round(1)
+    speed_agg = speed_agg.merge(pct_high[["STATE", "pct_crashes_high_speed"]], on="STATE", how="left")
+
+    # Combine and format state_fips
+    fars_struct = priors.merge(speed_agg, on="STATE", how="outer")
+    fars_struct["state_fips"] = fars_struct["STATE"].apply(lambda x: f"{int(x):02d}")
+    fars_struct = fars_struct.drop(columns=["STATE"])
+
+    print(f"  {len(fars_struct)} states — impaired with prior DWI: "
+          f"{fars_struct['pct_impaired_with_prior_dwi'].median():.1f}% median")
+
+    to_duckdb(fars_struct, "fars_prior_dwi_speed")
+    to_interim(fars_struct, "fars_prior_dwi_speed")
+    register_source(
+        table="fars_prior_dwi_speed",
+        name="NHTSA FARS 2024 — Prior DWI Convictions & Crash Speed Limits",
+        url="https://static.nhtsa.gov/nhtsa/downloads/FARS/2024/National/FARS2024NationalCSV.zip",
+        license="Public domain (U.S. government work)",
+        notes="Extracted PREV_DWI (prior convictions) and VSPD_LIM (posted speed) from vehicle.csv. "
+              "Joined with drimpair.csv code 9 to identify alcohol-impaired drivers.",
+    )
+else:
+    print("  SKIPPED — fars_2024.zip not found in data/raw/")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 8. STATE SPEED LIMITS & VMT — structural controls
+#    Sources: IIHS Maximum Posted Speed Limits + FHWA Highway Statistics VM-2
+# ═══════════════════════════════════════════════════════════════════════════════
+print("\n[8/8] State speed limits (IIHS) & VMT (FHWA)")
+
+# Maximum posted rural interstate speed limits (IIHS, August 2026)
+# Source: https://www.iihs.org/research-areas/speed/speed-limit-laws
+speed_data = {
+    "Alabama": 70, "Alaska": 65, "Arizona": 75, "Arkansas": 75,
+    "California": 70, "Colorado": 75, "Connecticut": 65, "Delaware": 65,
+    "District of Columbia": 55, "Florida": 70, "Georgia": 70, "Hawaii": 60,
+    "Idaho": 80, "Illinois": 70, "Indiana": 70, "Iowa": 70,
+    "Kansas": 75, "Kentucky": 70, "Louisiana": 75, "Maine": 75,
+    "Maryland": 70, "Massachusetts": 65, "Michigan": 75, "Minnesota": 70,
+    "Mississippi": 70, "Missouri": 75, "Montana": 80, "Nebraska": 75,
+    "Nevada": 80, "New Hampshire": 70, "New Jersey": 65, "New Mexico": 75,
+    "New York": 65, "North Carolina": 70, "North Dakota": 80,
+    "Ohio": 70, "Oklahoma": 80, "Oregon": 70, "Pennsylvania": 70,
+    "Rhode Island": 65, "South Carolina": 70, "South Dakota": 80,
+    "Tennessee": 70, "Texas": 85, "Utah": 80, "Vermont": 65,
+    "Virginia": 70, "Washington": 75, "West Virginia": 70,
+    "Wisconsin": 70, "Wyoming": 80,
+}
+
+# FHWA Highway Statistics 2022, Table VM-2 — Vehicle Miles Traveled (millions)
+# Source: https://www.fhwa.dot.gov/policyinformation/statistics/2022/vm2.cfm
+vmt_data = {
+    "Alabama": 71816, "Alaska": 5640, "Arizona": 72262, "Arkansas": 38324,
+    "California": 346954, "Colorado": 55215, "Connecticut": 32543,
+    "Delaware": 10676, "District of Columbia": 3628, "Florida": 229027,
+    "Georgia": 131782, "Hawaii": 10537, "Idaho": 19895, "Illinois": 109222,
+    "Indiana": 82776, "Iowa": 35010, "Kansas": 33913, "Kentucky": 50479,
+    "Louisiana": 51143, "Maine": 15395, "Maryland": 59103,
+    "Massachusetts": 62488, "Michigan": 102421, "Minnesota": 60352,
+    "Mississippi": 40988, "Missouri": 74757, "Montana": 13654,
+    "Nebraska": 22111, "Nevada": 28784, "New Hampshire": 14018,
+    "New Jersey": 77651, "New Mexico": 26080, "New York": 123169,
+    "North Carolina": 120783, "North Dakota": 10362, "Ohio": 117109,
+    "Oklahoma": 51282, "Oregon": 36272, "Pennsylvania": 110791,
+    "Rhode Island": 8284, "South Carolina": 59293, "South Dakota": 10740,
+    "Tennessee": 82759, "Texas": 283508, "Utah": 33843, "Vermont": 7483,
+    "Virginia": 88561, "Washington": 62122, "West Virginia": 20009,
+    "Wisconsin": 66217, "Wyoming": 10398,
+}
+
+speed_vmt_df = pd.DataFrame([
+    {"state_name": k, "max_speed_limit_mph": speed_data[k], "vmt_millions_2022": vmt_data[k]}
+    for k in speed_data if k in vmt_data
+])
+print(f"  {len(speed_vmt_df)} states")
+
+to_duckdb(speed_vmt_df, "speed_limits_vmt")
+to_interim(speed_vmt_df, "speed_limits_vmt")
+register_source(
+    table="speed_limits_vmt",
+    name="IIHS Maximum Posted Speed Limits (Aug 2026) + FHWA Highway Statistics VM-2 (2022)",
+    url="https://www.iihs.org/research-areas/speed/speed-limit-laws",
+    license="Public domain (FHWA) / IIHS public reference",
+    notes="Rural interstate max speed per state (IIHS). Annual VMT in millions (FHWA 2022).",
+)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# WRITE _sources METADATA TABLE TO DUCKDB
 # ═══════════════════════════════════════════════════════════════════════════════
 print("\n[Writing _sources metadata table]")
 
