@@ -14,8 +14,9 @@ jupyterlab==4.4.3
 ipykernel==6.29.5
 
 # --- viz / social export ---
-matplotlib==3.10.3
+matplotlib==3.11.1
 Pillow==12.3.0               # image export and resizing
+geopandas==1.1.4             # choropleth maps
 
 # --- data packaging ---
 openpyxl==3.1.5              # Excel export for sellable datasets
