@@ -231,6 +231,239 @@ def social_ranked_bars(
 
 
 # ---------------------------------------------------------------------------
+# Diverging bar chart (better/worse than expected)
+# ---------------------------------------------------------------------------
+
+def social_diverging_bars(
+    df: pd.DataFrame,
+    value_col: str,
+    label_col: str = "state_name",
+    expected: float | str = "mean",
+    title: str = "",
+    subtitle: str = "",
+    source: str = "",
+    footnote: str = "",
+    worse_color: str | None = None,
+    better_color: str | None = None,
+    value_fmt: str = ".2f",
+    top_n: int = 15,
+    show_expected_label: bool = True,
+    preset: str = "instagram_portrait",
+) -> alt.Chart:
+    """Diverging horizontal bar chart showing deviation from expected value.
+
+    Bars extend left (better) or right (worse) from a central reference line.
+    Useful for residual analysis: "which states are better/worse than expected?"
+
+    Args:
+        df:              DataFrame with state data.
+        value_col:       Numeric column to display.
+        label_col:       Column for bar labels (state names or abbreviations).
+        expected:        Reference value. Use "mean" for the column mean, "median"
+                         for median, or a specific float value.
+        title:           Chart title.
+        subtitle:        Subtitle.
+        source:          Source line.
+        footnote:        Additional footnote text.
+        worse_color:     Color for bars above expected (default: coral).
+        better_color:    Color for bars below expected (default: teal).
+        value_fmt:       Number format for bar labels.
+        top_n:           Show top N worst + top N best (most divergent).
+        show_expected_label: Show annotation for the expected line.
+        preset:          Platform size preset.
+
+    Returns:
+        Altair Chart object.
+    """
+    w, h = _preset_size(preset)
+    worse_color = worse_color or COOLORS["coral"]
+    better_color = better_color or COOLORS["teal"]
+
+    data = df[[label_col, value_col]].dropna().copy()
+
+    # Compute expected reference
+    if expected == "mean":
+        ref_value = data[value_col].mean()
+    elif expected == "median":
+        ref_value = data[value_col].median()
+    else:
+        ref_value = float(expected)
+
+    # Compute deviation from expected
+    data["_deviation"] = data[value_col] - ref_value
+    data["_direction"] = data["_deviation"].apply(
+        lambda x: "Worse" if x > 0 else "Better"
+    )
+    data["_color"] = data["_direction"].map({"Worse": worse_color, "Better": better_color})
+
+    # Select most divergent states (top_n worst + top_n best)
+    worst = data.nlargest(top_n, "_deviation")
+    best = data.nsmallest(top_n, "_deviation")
+    data = pd.concat([worst, best]).drop_duplicates(subset=[label_col])
+
+    # Sort by deviation for visual ordering
+    data = data.sort_values("_deviation", ascending=True)
+
+    # Bars
+    bars = alt.Chart(data).mark_bar(cornerRadiusEnd=3).encode(
+        x=alt.X("_deviation:Q", title=f"Deviation from expected ({ref_value:{value_fmt}})"),
+        y=alt.Y(
+            f"{label_col}:N",
+            sort=alt.SortField(field="_deviation", order="ascending"),
+            title="",
+        ),
+        color=alt.Color("_color:N", scale=None),
+        tooltip=[
+            alt.Tooltip(f"{label_col}:N", title="State"),
+            alt.Tooltip(f"{value_col}:Q", title="Actual", format=value_fmt),
+            alt.Tooltip("_deviation:Q", title="Deviation", format="+.2f"),
+        ],
+    )
+
+    # Value labels at bar ends
+    # Positive bars: label to the right; negative bars: label to the left
+    pos_data = data[data["_deviation"] > 0]
+    neg_data = data[data["_deviation"] <= 0]
+
+    labels_pos = alt.Chart(pos_data).mark_text(
+        fontSize=10, fontWeight="bold", dx=20,
+    ).encode(
+        x=alt.X("_deviation:Q"),
+        y=alt.Y(f"{label_col}:N", sort=alt.SortField(field="_deviation", order="ascending")),
+        text=alt.Text("_deviation:Q", format="+.2f"),
+        color=alt.value(worse_color),
+    )
+
+    labels_neg = alt.Chart(neg_data).mark_text(
+        fontSize=10, fontWeight="bold", dx=-20,
+    ).encode(
+        x=alt.X("_deviation:Q"),
+        y=alt.Y(f"{label_col}:N", sort=alt.SortField(field="_deviation", order="ascending")),
+        text=alt.Text("_deviation:Q", format="+.2f"),
+        color=alt.value(better_color),
+    )
+
+    # Zero reference line
+    rule = alt.Chart(pd.DataFrame([{"x": 0}])).mark_rule(
+        color=PALETTE["dark"], strokeWidth=1.5, strokeDash=[4, 2],
+    ).encode(x="x:Q")
+
+    layers = [bars, rule, labels_pos, labels_neg]
+
+    # Expected value annotation
+    if show_expected_label:
+        expected_label = alt.Chart(
+            pd.DataFrame([{"x": 0, "text": f"Expected: {ref_value:{value_fmt}}"}])
+        ).mark_text(
+            align="left", dx=5, dy=-10, fontSize=10,
+            color=PALETTE["mid"], fontStyle="italic",
+        ).encode(x="x:Q", text="text:N")
+        layers.append(expected_label)
+
+    chart = alt.layer(*layers).properties(
+        width=w - 220,
+        height=h - 140,
+        title=alt.Title(title, subtitle=[subtitle] if subtitle else []),
+    )
+
+    # Footer (source + footnote)
+    footer_parts = []
+    if source:
+        footer_parts.append(f"Source: {source}")
+    if footnote:
+        footer_parts.append(footnote)
+
+    if footer_parts:
+        footer_text = "  |  ".join(footer_parts)
+        footer_chart = alt.Chart(
+            pd.DataFrame([{"text": footer_text}])
+        ).mark_text(
+            align="left", fontSize=9, color=PALETTE["mid"],
+        ).encode(text="text:N").properties(width=w - 120, height=18)
+        chart = alt.vconcat(chart, footer_chart).configure_concat(spacing=5)
+
+    return chart
+
+
+def social_residual_bars(
+    df: pd.DataFrame,
+    outcome_col: str,
+    predictor_col: str,
+    label_col: str = "state_name",
+    title: str = "",
+    subtitle: str = "",
+    source: str = "",
+    footnote: str = "",
+    worse_color: str | None = None,
+    better_color: str | None = None,
+    top_n: int = 15,
+    preset: str = "instagram_portrait",
+) -> alt.Chart:
+    """Diverging bars based on OLS residuals (actual minus predicted).
+
+    Fits a simple linear regression of outcome ~ predictor, then plots each
+    state's residual. Positive = worse than expected given the predictor level.
+
+    Args:
+        df:             DataFrame with state data.
+        outcome_col:    Dependent variable (e.g., fatality rate).
+        predictor_col:  Independent variable (e.g., consumption).
+        label_col:      Column for bar labels.
+        title:          Chart title.
+        subtitle:       Subtitle.
+        source:         Source line.
+        footnote:       Additional footnote.
+        worse_color:    Color for positive residuals (default: coral).
+        better_color:   Color for negative residuals (default: teal).
+        top_n:          Show top N in each direction.
+        preset:         Platform size preset.
+
+    Returns:
+        Altair Chart object.
+    """
+    import numpy as np
+
+    data = df[[label_col, outcome_col, predictor_col]].dropna().copy()
+
+    # Fit linear model
+    x = data[predictor_col].values
+    y = data[outcome_col].values
+    slope, intercept = np.polyfit(x, y, 1)
+    data["_predicted"] = intercept + slope * data[predictor_col]
+    data["_residual"] = data[outcome_col] - data["_predicted"]
+
+    r_squared = 1 - (np.sum((y - (intercept + slope * x))**2) /
+                     np.sum((y - y.mean())**2))
+
+    default_footnote = (
+        f"Residual from OLS: {outcome_col.replace('_', ' ')} ~ "
+        f"{predictor_col.replace('_', ' ')} (R²={r_squared:.2f})"
+    )
+    footnote = footnote or default_footnote
+
+    # Use the diverging bars function with residuals
+    data_for_chart = data[[label_col, "_residual"]].copy()
+    data_for_chart.columns = [label_col, "_residual_value"]
+
+    return social_diverging_bars(
+        data_for_chart,
+        value_col="_residual_value",
+        label_col=label_col,
+        expected=0.0,
+        title=title,
+        subtitle=subtitle,
+        source=source,
+        footnote=footnote,
+        worse_color=worse_color,
+        better_color=better_color,
+        value_fmt=".2f",
+        top_n=top_n,
+        show_expected_label=False,
+        preset=preset,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Comparison chart (group means)
 # ---------------------------------------------------------------------------
 
@@ -440,6 +673,12 @@ def social_choropleth(
     # Convert to GeoJSON for Altair
     geo_json = geo.__geo_interface__
 
+    # Flatten properties to top-level feature fields (required for vl-convert geoshape rendering)
+    for feature in geo_json["features"]:
+        props = feature.get("properties", {})
+        for k, v in props.items():
+            feature[k] = v
+
     if mode == "heat":
         color_scale = color_scale or PALETTE["heat_ramp"]
         color_enc = alt.Color(
@@ -469,12 +708,9 @@ def social_choropleth(
         stroke="white", strokeWidth=0.5,
     ).encode(
         color=color_enc,
-        tooltip=[alt.Tooltip("properties.NAME:N", title="State"),
-                 alt.Tooltip(f"properties.{column}:Q" if mode == "heat" else f"properties.{column}:N",
+        tooltip=[alt.Tooltip("NAME:N", title="State"),
+                 alt.Tooltip(f"{column}:Q" if mode == "heat" else f"{column}:N",
                              title=legend_title or column)],
-    ).transform_lookup(
-        lookup="id",
-        from_=alt.LookupData(data=alt.Data(values=geo_json["features"]), key="id"),
     ).project(
         type="albersUsa",
     ).properties(
@@ -616,6 +852,7 @@ def social_bivariate_choropleth(
     title: str = "",
     subtitle: str = "",
     source: str = "",
+    footnote: str = "",
     fips_col: str = "state_fips",
     n_bins: int = 3,
     x_label: str = "",
@@ -638,6 +875,7 @@ def social_bivariate_choropleth(
         title:     Chart title.
         subtitle:  Subtitle.
         source:    Source line.
+        footnote:  Additional note below the chart (methodology caveats, etc.)
         fips_col:  Column with 2-digit FIPS codes.
         n_bins:    Number of quantile bins per axis (default 3 → 9 colors).
         x_label:   Label for x variable in legend.
@@ -709,7 +947,7 @@ def social_bivariate_choropleth(
         height=h - 140,
     )
 
-    # Build legend as a small layered chart
+    # Build legend as a small layered chart with Low/High labels and arrows
     legend_data = []
     for yi in range(n_bins):
         for xi in range(n_bins):
@@ -719,14 +957,36 @@ def social_bivariate_choropleth(
             })
     legend_df = pd.DataFrame(legend_data)
 
-    legend_chart = alt.Chart(legend_df).mark_rect(
+    _legend_size = 70
+
+    # Color grid
+    legend_rects = alt.Chart(legend_df).mark_rect(
         strokeWidth=0.5, stroke="white",
     ).encode(
-        x=alt.X("x:O", title=x_label or _pretty(x_col), axis=alt.Axis(labels=False, ticks=False)),
-        y=alt.Y("y:O", title=y_label or _pretty(y_col), axis=alt.Axis(labels=False, ticks=False),
-                 sort="descending"),
+        x=alt.X("x:O", axis=None),
+        y=alt.Y("y:O", axis=None, sort="descending"),
         color=alt.Color("color:N", scale=None),
-    ).properties(width=60, height=60, title="Legend")
+    ).properties(width=_legend_size, height=_legend_size)
+
+    # X-axis label with arrow (below grid)
+    _x_label_text = x_label or _pretty(x_col)
+    x_axis_label = alt.Chart(
+        pd.DataFrame([{"text": f"← Low   {_x_label_text}   High →"}])
+    ).mark_text(
+        fontSize=9, color=PALETTE["mid"], fontWeight="normal",
+    ).encode(text="text:N").properties(width=_legend_size, height=14)
+
+    # Y-axis label (to the left, rotated via title on the rects)
+    _y_label_text = y_label or _pretty(y_col)
+    y_axis_label = alt.Chart(
+        pd.DataFrame([{"text": f"↑ {_y_label_text}"}])
+    ).mark_text(
+        fontSize=9, color=PALETTE["mid"], angle=270, fontWeight="normal",
+    ).encode(text="text:N").properties(width=14, height=_legend_size)
+
+    # Stack: y_label left of rects, x_label below
+    legend_grid = alt.hconcat(y_axis_label, legend_rects).resolve_scale(color="independent")
+    legend_chart = alt.vconcat(legend_grid, x_axis_label).resolve_scale(color="independent")
 
     # Combine map + legend side by side
     chart = alt.hconcat(
@@ -735,14 +995,21 @@ def social_bivariate_choropleth(
         title=alt.Title(title, subtitle=[subtitle] if subtitle else []),
     )
 
+    # Add source + footnote below
+    footer_parts = []
     if source:
-        # Add source as a text mark below
-        source_chart = alt.Chart(
-            pd.DataFrame([{"text": f"Source: {source}"}])
+        footer_parts.append(f"Source: {source}")
+    if footnote:
+        footer_parts.append(footnote)
+
+    if footer_parts:
+        footer_text = "  |  ".join(footer_parts)
+        footer_chart = alt.Chart(
+            pd.DataFrame([{"text": footer_text}])
         ).mark_text(
             align="left", fontSize=9, color=PALETTE["mid"],
-        ).encode(text="text:N").properties(width=w - 120, height=15)
-        chart = alt.vconcat(chart, source_chart).configure_concat(spacing=5)
+        ).encode(text="text:N").properties(width=w - 120, height=18)
+        chart = alt.vconcat(chart, footer_chart).configure_concat(spacing=5)
 
     return chart
 

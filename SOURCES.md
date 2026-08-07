@@ -245,6 +245,69 @@ other crowd-edited references.
 
 ---
 
+## BAC Testing Rates & Laws
+
+### FARS 2024 — BAC Testing Rates by State
+- **Source:** NHTSA FARS 2024 — `person.csv`
+- **URL:** https://static.nhtsa.gov/nhtsa/downloads/FARS/2024/National/FARS2024NationalCSV.zip
+- **Computed from:** `ALC_STATUS` field (0=Test Not Given, 2=Test Given, 8=Not Reported, 9=Unknown)
+- **License:** Public domain (U.S. government work)
+- **Fields:** pct_bac_known_killed, pct_bac_known_all, pct_bac_known_surviving,
+  pct_blood_test (blood vs breath/PBT share), test type counts by state
+- **DuckDB table:** `fars_bac_testing_2024`
+- **Notes:** Computed percentage of drivers in fatal crashes with known BAC test
+  results, broken out by killed vs surviving. National avg: 66.8% of killed
+  drivers have known BAC. Range: 9.6% (Mississippi) to 97.7% (Vermont).
+  States with mandatory coroner/ME testing laws average 78.2% vs 51.7% for
+  probable-cause states.
+- **Retrieved:** 2026-08-07
+
+### State Mandatory BAC Testing Laws
+- **Source:** Hand-curated from NHTSA Casanova et al. 2012 (DOT HS 811 661) +
+  current state statutes
+- **Reference URL:** https://rosap.ntl.bts.gov/view/dot/1940
+- **Format:** CSV (`data/raw/bac_testing_laws.csv`)
+- **Fields:** mandatory_testing_law, testing_scope, testing_authority,
+  no_refusal_program, statute_citation, notes
+- **License:** Public domain (legislative references)
+- **DuckDB table:** `bac_testing_laws`
+- **Notes:** 29 states require BAC testing of fatally injured drivers via
+  coroner/ME statute. 22 states use probable-cause only. The Casanova 2012
+  NHTSA report identified 25 mandatory states; we updated with 4 additional
+  states that have enacted similar statutes since. Each entry includes the
+  specific statute citation.
+- **Retrieved:** 2026-08-07
+
+---
+
+## DUI Enforcement Procedures (NASID)
+
+### NASID — State DUI Enforcement Laws Database
+- **Source:** National Alliance to Stop Impaired Driving (NASID)
+- **URL:** https://nasid.org/state/{state-slug}/
+- **Format:** HTML state pages (scraped 51 pages)
+- **License:** Public reference (data sourced from NHTSA/FARS, May 2024)
+- **DuckDB tables:** `nasid_enforcement` (raw text), `nasid_enforcement_clean` (standardized)
+- **Fields (12 per state):**
+  - Sobriety Checkpoints (permitted/prohibited)
+  - No Refusal Programs (active/authorized/not authorized)
+  - Roadside PBT Laws (authorized/not explicit)
+  - Ignition Interlocks (mandatory_all/high_bac_repeat/repeat/discretionary)
+  - Felony DUI threshold (2nd/3rd/4th offense)
+  - DUI Look-back Period (5–lifetime years)
+  - Enhanced High-BAC Threshold (0.15–0.20)
+  - Open Container compliance (federal compliant/non-compliant)
+  - Implied Consent Testing Methods (blood/breath/urine/oral fluid)
+  - ALS/ALR (administrative license suspension enacted)
+  - Social Host Laws
+  - ALR/Hardship license
+- **Retrieved:** 2026-08-07
+- **Notes:** Key distributions: 39 states permit checkpoints; 9 actively use
+  no-refusal programs; 32 have mandatory-all-offender IID; 33 explicitly
+  authorize PBT; 48 have felony DUI laws; 47 have enhanced high-BAC penalties.
+
+---
+
 ## Source Provenance in DuckDB
 
 Every table in `data/project.duckdb` has a corresponding entry in the
@@ -256,3 +319,23 @@ SELECT * FROM _sources;
 
 This table records the table name, source name, URL, license, and retrieval
 date for every dataset loaded into the database.
+
+---
+
+## Body-Worn Camera Laws
+
+### NCSL Body-Worn Camera Laws Database
+- **Source:** National Conference of State Legislatures (NCSL)
+- **URL:** https://www.ncsl.org/civil-and-criminal-justice/body-worn-camera-laws-database
+- **Format:** HTML text → hand-curated CSV (`data/raw/body_cam_laws_ncsl.csv`)
+- **Fields:** state_abbr, state_name, has_bwc_law, mandate_statewide, funding_provided,
+  retention_policy, foia_provisions, year_first_law, notes
+- **License:** Public domain (legislative information)
+- **Retrieved:** 2025-08-07
+- **DuckDB table:** `body_cam_laws`
+- **Notes:** 34 states + DC have enacted BWC legislation. 8 states mandate
+  statewide use (CO, CT, DE, IL, MD, NJ, NM, SC). Data coded from NCSL
+  narrative descriptions by categorizing: (1) whether a mandate exists,
+  (2) whether state funding was appropriated, (3) whether retention periods
+  are specified, and (4) whether FOIA/public records provisions address BWC
+  footage. Not all nuance is captured — see notes field for details.

@@ -77,6 +77,24 @@ sources:
     js_render: false
     notes: "Justia 50-state DUI/DWI survey with links to per-state detail pages."
 
+  # ── BAC testing & enforcement procedures ───────────────────────────────────
+  bac_testing_laws:
+    url: https://rosap.ntl.bts.gov/view/dot/1940
+    type: hand_curated
+    notes: "Mandatory BAC testing laws by state. Based on Casanova 2012 (DOT HS 811 661) + current state statutes. File: data/raw/bac_testing_laws.csv"
+
+  fars_bac_testing_2024:
+    url: https://static.nhtsa.gov/nhtsa/downloads/FARS/2024/National/FARS2024NationalCSV.zip
+    type: computed
+    target_file: person.csv
+    notes: "BAC testing rates by state computed from person.csv ALC_STATUS field. Pct known BAC for killed vs surviving drivers."
+
+  nasid_enforcement:
+    url: https://nasid.org/state/{state-slug}/
+    type: html_scrape
+    js_render: false
+    notes: "NASID state enforcement law pages. 12 fields per state: checkpoints, IID, no-refusal, PBT, lookback, felony, high-BAC, testing methods, open container, ALS/ALR, social host."
+
 export:
   formats:
     - csv
