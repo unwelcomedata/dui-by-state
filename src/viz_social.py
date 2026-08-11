@@ -56,6 +56,8 @@ def _unwelcome_theme() -> dict:
             "bar": {"cornerRadiusEnd": 3},
             "point": {"size": 60, "filled": True},
             "line": {"strokeWidth": 3},
+            "text": {"font": SOCIAL_THEME["font"]},
+            "header": {"labelFont": SOCIAL_THEME["font"], "titleFont": SOCIAL_THEME["font"]},
         }
     }
 
