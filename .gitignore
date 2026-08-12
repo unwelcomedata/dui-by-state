@@ -34,6 +34,9 @@ export/*
 # Social chart PNGs can reveal your data before you're ready to publish.
 outputs/*
 !outputs/.gitkeep
+!outputs/social/
+outputs/social/*
+!outputs/social/.gitkeep
 
 # ── Environment & secrets ─────────────────────────────────────────────────────
 .env

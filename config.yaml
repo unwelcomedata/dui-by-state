@@ -5,7 +5,8 @@ paths:
   data_interim:   data/interim    # intermediate cleaned/joined tables
   data_processed: data/processed  # final analysis-ready tables
   export:         export          # sellable dataset packages (csv, xlsx, parquet)
-  outputs:        outputs         # chart images for social posting
+  outputs:        outputs         # chart images (exploratory)
+  outputs_social: outputs/social  # publication-ready social media charts
   notebooks:      notebooks
 
 settings:

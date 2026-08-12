@@ -1041,7 +1041,7 @@ def save_social(
     Returns:
         Path to saved PNG.
     """
-    out_dir = Path(cfg["paths"]["outputs"])
+    out_dir = Path(cfg["paths"].get("outputs_social", cfg["paths"]["outputs"]))
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{filename}.png"
 
