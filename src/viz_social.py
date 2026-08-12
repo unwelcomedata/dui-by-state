@@ -1,6 +1,6 @@
 """Social-ready chart export using Altair + vl-convert.
 
-Produces publication-quality PNG images for Instagram/Twitter posting.
+Produces publication-quality PNG images for Instagram/X posting.
 Uses the @unwelcomedata brand palette (Coolors) and Inter typography.
 
 All charts are rendered to PNG via vl-convert — no browser needed.
@@ -15,7 +15,7 @@ Key functions:
 
 Platform presets:
     instagram_portrait : 1080×1350
-    twitter_landscape  : 1600×900
+    twitter_landscape  : 1600×900  (X landscape)
     instagram_square   : 1080×1080
 """
 

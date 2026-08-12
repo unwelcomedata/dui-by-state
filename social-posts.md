@@ -11,7 +11,7 @@ Cadence: 1 chart per day, then a thread on day 4
 ## Day 1 — Bivariate map (consumption vs fatality)
 
 **File:** `outputs/social/social_bivariate_consumption_fatality.png`
-**Format:** Twitter landscape (1600×900)
+**Format:** X landscape (1600×900)
 
 **Copy:**
 
@@ -34,7 +34,7 @@ Cadence: 1 chart per day, then a thread on day 4
 ## Day 2 — Felony threshold map
 
 **File:** `outputs/social/social_map_felony_threshold.png`
-**Format:** Twitter landscape (1600×900)
+**Format:** X landscape (1600×900)
 
 **Copy:**
 
@@ -134,7 +134,7 @@ Don't use: `#data` (too generic), `#infographic` (wrong audience), `#alcohol` (a
 ## Engagement strategy
 
 - **Reply to your own thread** with a "methodology note" — shows rigor, attracts researchers
-- **Quote-tweet** anyone who engages with a follow-up stat from the dataset
+- **Quote-post** anyone who engages with a follow-up stat from the dataset
 - **Pin** whichever post gets the most traction in the first 24 hours
 - **Post times:** Weekday mornings (8-9am ET) for policy/professional audience, or evenings (7-9pm ET) for general audience. Test both.
 
@@ -142,7 +142,7 @@ Don't use: `#data` (too generic), `#infographic` (wrong audience), `#alcohol` (a
 
 ## Future: YouTube Shorts
 
-If any post gets strong engagement (>50 retweets or >10k impressions), turn it into a 30-second Short:
+If any post gets strong engagement (>50 reposts or >10k impressions), turn it into a 30-second Short:
 
 1. Open Canva → YouTube Short template (1080×1920)
 2. Slide 1 (3s): Title card with the hook stat ("93% of DUI deaths are first-timers")
