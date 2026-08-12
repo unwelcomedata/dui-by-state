@@ -31,7 +31,7 @@ import vl_convert as vlc
 from PIL import Image, ImageDraw, ImageFont
 
 # Import shared brand library from workspace root
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared"))
 from viz import (  # noqa: E402
     BRAND, COOLORS, COOLORS_SCALE, PALETTE, PRESETS,
     REGION_COLORS, SOCIAL_THEME,

@@ -35,7 +35,7 @@ import pandas as pd
 from PIL import Image
 
 # Import shared brand library from workspace root
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "shared"))
 from viz import BRAND, PALETTE, REGION_COLORS, PRESETS, STYLE  # noqa: E402
 
 # ---------------------------------------------------------------------------
