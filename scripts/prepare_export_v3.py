@@ -49,10 +49,10 @@ SELECT
 
     -- ── Fatality outcomes (FARS raw + NHTSA imputed) ────────────────────────
     s.traffic_fatalities_2024,
-    s.alcohol_fatalities_2024 AS impaired_fatalities_fars_raw,
+    s.impaired_fatalities_fars_2024 AS impaired_fatalities_fars_raw,
     n.alcohol_impaired_fatalities_2024 AS alcohol_fatalities_nhtsa_imputed,
     n.total_fatalities_2024 AS total_fatalities_nhtsa,
-    s.pct_alcohol_2024 AS pct_impaired_fars_raw,
+    s.pct_impaired_fars_2024 AS pct_impaired_fars_raw,
     n.pct_alcohol_impaired_2024 AS pct_alcohol_nhtsa_imputed,
     n.high_bac_fatalities_2024,
     n.pct_high_bac_2024,
