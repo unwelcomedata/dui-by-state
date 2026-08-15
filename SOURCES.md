@@ -339,3 +339,25 @@ date for every dataset loaded into the database.
   (2) whether state funding was appropriated, (3) whether retention periods
   are specified, and (4) whether FOIA/public records provisions address BWC
   footage. Not all nuance is captured — see notes field for details.
+
+---
+
+## Vehicle Impound / Seizure / Forfeiture Laws
+
+### Vehicle Sanctions by State
+- **Source:** NHTSA Countermeasures That Work (2023), NHTSA DOT HS 811 028B (2008),
+  CDC MV PICCS, individual state statutes
+- **Primary URL:** https://www.nhtsa.gov/book/countermeasures-that-work/alcohol-impaired-driving/countermeasures/other-strategies-behavior-5
+- **Secondary URL:** https://www.cdc.gov/transportation-safety/calculator/impoundment.html
+- **Format:** Hand-curated CSV stored at `data/raw/vehicle_impound_laws.csv`
+- **Fields:** state_fips, state_abbr, state_name, vehicle_impound_law, impound_trigger,
+  impound_mandatory, impound_duration_days, vehicle_forfeiture_law, forfeiture_trigger,
+  plate_impound_law, source_note
+- **License:** Public domain (U.S. government work)
+- **Retrieved:** 2026-08-15
+- **Notes:** Compiled from NHTSA's "Countermeasures That Work" (11th edition, 2023)
+  and "Update of Vehicle Sanction Laws and Their Application, Vol. II" (DOT HS 811 028B,
+  2008), CDC MV PICCS intervention documentation, and current state statutes verified
+  via official .gov statute databases. Distinguishes between mandatory vehicle
+  impound (automatic upon arrest/conviction) and discretionary (at officer/court
+  discretion). Covers impound, immobilization, forfeiture, and plate impound.

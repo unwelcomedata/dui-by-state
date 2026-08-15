@@ -17,23 +17,11 @@ settings:
 sources:
 
   # ── State reference ────────────────────────────────────────────────────────
-  # Census Gazetteer 2024: FIPS, name, abbr, land/water area sq mi, lat/lng centroid
-  gazetteer:
-    url: https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2024_Gazetteer/2024_Gaz_state_national.txt
-    type: csv
-    notes: "Tab-delimited. Columns: USPS, GEOID, ANSICODE, NAME, ALAND, AWATER, ALAND_SQMI, AWATER_SQMI, INTPTLAT, INTPTLONG"
-
-  # Census Population Estimates 2023 via API (no key needed for state totals)
+  # Census Population Estimates 2023 via API (needed for per-capita fatality rates)
   population:
     url: https://api.census.gov/data/2023/pep/population?get=NAME,POP_2023&for=state:*
     type: json
     notes: "Returns JSON array. Row 0 is header. Filter out territories after load."
-
-  # Census region/division classifications
-  census_regions:
-    url: https://raw.githubusercontent.com/cphalpert/census-regions/master/us%20census%20bureau%20regions%20and%20divisions.csv
-    type: csv
-    notes: "State, State Code, Region, Division"
 
   # ── NHTSA fatalities ────────────────────────────────────────────────────────
   # Full FARS 2024 national CSV zip — accident-level data, filter to alcohol crashes
@@ -50,14 +38,6 @@ sources:
     type: pdf_table
     notes: "2024 State Alcohol-Impaired-Driving Estimates. Manual step if PDF scrape fails."
 
-  # NHTSA FARS historical state aggregates (NHTSA publishes these as Excel)
-  fars_trends:
-    url: https://www-fars.nhtsa.dot.gov/States/StatesFatalitiesAndRates.aspx
-    type: html_table
-    table_index: 0
-    js_render: false
-    notes: "Historical fatalities and rates by state, multiple years."
-
   # ── DUI laws & penalties ───────────────────────────────────────────────────
   dui_laws_ncsl:
     url: https://www.ncsl.org/transportation/dui-dwi-per-se-laws
@@ -71,12 +51,6 @@ sources:
     type: html_scrape
     js_render: false
     notes: "Structured penalty table per state: jail, fine, suspension, IID, felony threshold."
-
-  dui_laws_justia:
-    url: https://www.justia.com/50-state-surveys/drunk-driving-dui-dwi/
-    type: html_scrape
-    js_render: false
-    notes: "Justia 50-state DUI/DWI survey with links to per-state detail pages."
 
   # ── BAC testing & enforcement procedures ───────────────────────────────────
   bac_testing_laws:
@@ -95,6 +69,12 @@ sources:
     type: html_scrape
     js_render: false
     notes: "NASID state enforcement law pages. 12 fields per state: checkpoints, IID, no-refusal, PBT, lookback, felony, high-BAC, testing methods, open container, ALS/ALR, social host."
+
+  # ── Vehicle sanctions ──────────────────────────────────────────────────────
+  vehicle_impound_laws:
+    url: https://www.nhtsa.gov/book/countermeasures-that-work/alcohol-impaired-driving/countermeasures/other-strategies-behavior-5
+    type: hand_curated
+    notes: "Vehicle impound/immobilization/forfeiture laws by state. Compiled from NHTSA DOT HS 811 028B (2008), NHTSA Countermeasures That Work (2023), CDC MV PICCS, and current state statutes. File: data/raw/vehicle_impound_laws.csv"
 
 export:
   formats:
