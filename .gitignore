@@ -70,4 +70,6 @@ notebooks/05-analysis.ipynb
 *.log
 tmp/
 temp/
-social-posts.md
+
+# ── Artifacts (dev-only docs, not committed) ──────────────────────────────────
+artifacts/
