@@ -41,9 +41,17 @@ other crowd-edited references.
 - **Format:** CSV
 - **Fields used:** NAME, STATE (FIPS), POPESTIMATE2020–POPESTIMATE2024
 - **License:** Public domain (U.S. government work)
-- **Notes:** Annual state population estimates July 1 each year. 2024 estimates
-  are the most recent available. Summary level 40 = state; project filters out
-  national total (SUMLEV=10) and territories (STATE FIPS > 56).
+- **How the source collects the data:** Model-based postcensal estimates: the 2020
+  decennial base rolled forward with births, deaths, and migration. Not a survey/fresh count.
+- **How the source defines the data:** Resident population as of July 1 of each year.
+  Used here only as a denominator for per-100k rates.
+- **Methodology changes / series breaks:** Postcensal estimates are re-based (a new
+  "vintage") after each decennial census; using one vintage (2020–2024 series) end-to-end
+  avoids mixing revisions. Error grows with distance from the 2020 base.
+- **Known controversies / debates:** Census undercount debates; immaterial at state
+  denominator scale.
+- **Notes:** Summary level 40 = state; project filters out national total (SUMLEV=10)
+  and territories (STATE FIPS > 56).
 
 ---
 
@@ -56,11 +64,31 @@ other crowd-edited references.
 - **File used:** `accident.CSV` within each annual ZIP
 - **Key fields:** ST_CASE, STATE, STATENAME, YEAR, FATALS, DRUNK_DR
 - **License:** Public domain (U.S. government work)
-- **Notes:** DRUNK_DR > 0 indicates at least one alcohol-impaired driver was
-  involved in the crash. This is the gold-standard dataset for alcohol-impaired
-  driving fatalities in the United States. Data covers all 50 states + DC.
-  2024 data was first released April 2026.
-- **Coverage:** 2015–2024 (10 years)
+- **How the source collects the data:** A **census** of every fatal traffic crash on
+  a U.S. public road, compiled by NHTSA (NCSA) from each state's crash reports, death
+  certificates, and related records via trained state analysts. Universe = crashes on
+  public roads that killed at least one person within 30 days. Not a sample.
+- **How the source defines the data:**
+  - *Fatal crash*: at least one death within 30 days of a public-road motor-vehicle crash.
+  - *`DRUNK_DR`*: count of drivers in the crash with any alcohol involvement as coded in
+    FARS. **`DRUNK_DR > 0` is a raw-coded flag** (at least one drinking driver), which is
+    **not the same** as NHTSA's imputed "alcohol-impaired (BAC ≥ 0.08)" estimate — see
+    the imputed-estimates source below. Raw coding tends to *undercount* vs the imputed model.
+  - *Alcohol-impaired* (NHTSA's published definition): a driver/motorcycle operator with
+    BAC ≥ 0.08 g/dL.
+- **Methodology changes / series breaks:**
+  - FARS is broadly consistent year to year, but **coding variables and their availability
+    have changed over the decades** (new/retired data elements). Within this project's
+    2015–2024 window the core fields used are stable.
+  - **Raw `DRUNK_DR` coding vs multiple-imputation estimates are two different measures** —
+    never chart a raw-coded count next to an imputed BAC≥0.08 estimate as if equivalent.
+  - Early-release annual files are **revised** in later editions; figures here reflect the
+    first release (2024 released April 2026).
+- **Known controversies / debates:** Whether to report raw-coded or imputed alcohol
+  involvement is the central measurement choice; NHTSA treats the imputed estimates as
+  authoritative. Missing-BAC rates vary widely by state, which biases raw counts.
+- **Coverage:** 2015–2024 (10 years). Data covers all 50 states + DC.
+- **Notes:** This is the standard dataset for alcohol-involved fatal crashes in the U.S.
 
 ### NHTSA Traffic Safety Facts — State Alcohol-Impaired-Driving Estimates
 - **Source:** National Highway Traffic Safety Administration (NHTSA) — CrashStats
@@ -112,12 +140,29 @@ other crowd-edited references.
 - **License:** ICPSR Terms of Use — no redistribution of raw data; derivative
   analysis and aggregated statistics permitted; citation required
 - **Coverage:** 50 states + DC, 2023 (agency-level, aggregated to state)
-- **Notes:** **Important limitation:** Not all law enforcement agencies report to
-  UCR. State-level totals reflect only reporting agencies and significantly
-  undercount actual arrests in most states. Coverage varies widely — some states
-  have near-complete reporting, others report only a fraction of agencies. Use
-  for relative comparisons and per-reporting-population rates, not as absolute
-  arrest counts. Always note reporting coverage when publishing.
+- **How the source collects the data:** **Voluntary** administrative reporting by law
+  enforcement agencies to the FBI's UCR program. Not all agencies report, so it is
+  neither a census nor a probability sample — it is a self-selected subset weighted toward
+  participating agencies.
+- **How the source defines the data:** *Arrest* = a UCR arrest event for offense code
+  220 (driving under the influence). An arrest is not a conviction, and counts *events*,
+  not unique people. Coverage is measured against the population of *reporting* agencies,
+  not the state's full population.
+- **Methodology changes / series breaks:**
+  - **Major break: SRS → NIBRS-only on January 1, 2021.** The FBI retired the Summary
+    Reporting System and moved to NIBRS-only collection. Many agencies had not yet
+    transitioned, so **2021 national coverage dropped sharply and figures rely on
+    estimation**; 2022 recovered to ~93.5% coverage partly by re-accepting SRS data.
+    Arrest/offense counts **across the 2020→2021→2022 boundary reflect reporting-coverage
+    changes, not just real crime change** — do not read year-over-year moves there as
+    behavioral. (2023 data used here is post-transition; still coverage-limited.)
+  - Because coverage varies by state and year, **absolute counts are not comparable across
+    states or years**; use per-reporting-population rates only.
+- **Known controversies / debates:** The NIBRS transition and its coverage gap drew
+  significant criticism (DOJ review); UCR undercounts are a long-standing, well-documented
+  limitation.
+- **Notes:** Use for relative comparisons and per-reporting-population rates, never as
+  absolute arrest counts. Always note reporting coverage when publishing.
 - **Citation:** United States Department of Justice. Federal Bureau of
   Investigation. Uniform Crime Reporting Program Data: Arrests by Age, Sex,
   and Race, Summarized Yearly, United States, 2023. Inter-university Consortium
@@ -135,10 +180,21 @@ other crowd-edited references.
 - **Format:** PDF — Table 2 extracted via `pdfplumber`
 - **Fields used:** state_name, ethanol_per_capita_gallons_2022, consumption_decile_2022
 - **License:** Public domain (U.S. government work)
-- **Notes:** Per capita ethanol consumption in gallons for population ages 14+.
-  Includes beer, wine, spirits, and all beverages combined. Decile 1 = highest
-  consumption, 10 = lowest. National average 2022: 2.50 gallons.
-- **Coverage:** 50 states + DC, 2022
+- **How the source collects the data:** *Apparent consumption* derived from alcohol
+  **sales/tax/shipment** records (gallons of beverage converted to ethanol), divided by
+  the population aged 14+. It measures alcohol *sold* in a state, not alcohol *drunk by
+  residents* — a model/administrative proxy, not a survey of drinkers.
+- **How the source defines the data:** Per-capita ethanol in gallons (beer + wine +
+  spirits) for population ages 14+. Decile 1 = highest consumption, 10 = lowest.
+- **Methodology changes / series breaks:** Cross-border sales distort state figures
+  (tourism, low-tax states, military/tribal sales), so a high value can reflect
+  purchasing location rather than resident behavior. Population-base and beverage
+  conversion factors have been revised over the surveillance-report history; use one
+  report year (2022 here) rather than splicing editions.
+- **Known controversies / debates:** "Apparent consumption" systematically differs from
+  self-reported survey consumption (e.g. BRFSS); the sales-based method is standard but
+  known to misattribute cross-border purchases.
+- **Coverage:** 50 states + DC, 2022. National average 2022: 2.50 gallons.
 
 ---
 
@@ -151,10 +207,24 @@ other crowd-edited references.
 - **Fields used:** total_fatalities_2024, alcohol_impaired_fatalities_2024 (BAC≥.08),
   pct_alcohol_impaired_2024, high_bac_fatalities_2024 (BAC≥.15), pct_high_bac_2024
 - **License:** Public domain (U.S. government work)
-- **Notes:** Statistically imputed estimates — NHTSA uses multiple imputation to
-  estimate BAC for untested drivers. More accurate than raw FARS coding. National
-  2024: 11,907 alcohol-impaired fatalities (30% of 39,254 total).
-- **Coverage:** 50 states + DC, 2024
+- **How the source collects the data:** Derived from FARS (same census of fatal crashes)
+  but with a **statistical model** layered on top: for drivers with missing BAC, NHTSA
+  applies **multiple imputation** to estimate BAC across the full 0–0.94 g/dL range, then
+  aggregates. So these are *modeled estimates*, not raw counts.
+- **How the source defines the data:** *Alcohol-impaired fatality* = a death in a crash
+  involving a driver/motorcycle operator with (estimated) BAC ≥ 0.08 g/dL. *High-BAC* =
+  BAC ≥ 0.15. The imputation fills in the ~large share of drivers who were never tested.
+- **Methodology changes / series breaks:**
+  - **This is the imputed series; FARS raw `DRUNK_DR` is a different series.** In this
+    project the imputed estimate (~30% of fatals) is treated as authoritative and the raw
+    FARS coding (~15%) is the undercount — do not mix them in one comparison.
+  - NHTSA adopted the current multiple-imputation approach in the early 2000s (replacing an
+    older 3-category discriminant method); pre-2000s imputed figures are not directly
+    comparable. Not an issue for 2024-only use here.
+- **Known controversies / debates:** Imputation assumptions (which drivers get assigned a
+  high BAC) are periodically debated, but the method is the accepted federal standard.
+- **Coverage:** 50 states + DC, 2024. National 2024: 11,907 alcohol-impaired fatalities
+  (30% of 39,254 total).
 
 ---
 
@@ -203,6 +273,38 @@ other crowd-edited references.
   complete enumeration.
 - FARS fatality figures may be revised in subsequent NHTSA releases; figures
   here reflect the first annual release.
+
+### Methodology & definitions — the law-snapshot sources
+
+Most of the law/penalty/enforcement tables below (NCSL per se laws, NCSL IID laws,
+roadlawguide, ailawyer, IIHS speed limits, NASID enforcement, checkpoint legality,
+implied-consent, open-container, body-cam, vehicle impound) share the same profile,
+so their required fields are captured once here rather than repeated:
+
+- **Collection method:** hand-curated or scraped **point-in-time snapshots** of statute
+  status, transcribed from an authority (NCSL, IIHS, NASID, NHTSA, or the state code).
+  Not surveys, not counts — a coded reading of law as of a retrieval date.
+- **Definitions:** each "Yes/No/category" is a **coding judgment** about statutory text
+  (e.g. what counts as "mandatory-all-offender" IID, or a "felony threshold"). The coding
+  rules are noted per table; edge cases are resolved against the official statute.
+- **Methodology changes / series breaks:** these are **current-snapshot** tables with **no
+  time series** — a value reflects the law on the retrieval/verification date only. Laws
+  change frequently, so **do not compare one snapshot against an older edition** without
+  re-coding both from the same rules. When a source revises its compilation, treat it as a
+  new snapshot, not a continuation.
+- **Known controversies / debates:** secondary compilations (roadlawguide, ailawyer) can
+  disagree with each other and with statute; always defer to the official state statute
+  before publishing a penalty claim.
+
+### Series breaks that matter most for comparisons (quick reference)
+
+- **FARS raw `DRUNK_DR` ≠ NHTSA imputed BAC≥0.08 estimate** — different measures; the
+  imputed one is authoritative. Never chart them side by side as equals.
+- **FBI UCR SRS→NIBRS-only break at Jan 1, 2021** — arrest/offense counts around 2020–2022
+  reflect reporting-coverage changes, not just real change. Per-reporting-population rates only.
+- **NIAAA apparent consumption = alcohol sold, not resident drinking** — cross-border sales
+  distort state values.
+- **Census population = postcensal estimates**, re-based each decennial vintage.
 
 ---
 
@@ -314,11 +416,16 @@ Every table in `data/project.duckdb` has a corresponding entry in the
 `_sources` metadata table:
 
 ```sql
-SELECT * FROM _sources;
+SELECT duckdb_table, source_name, methodology, series_breaks FROM _sources;
 ```
 
-This table records the table name, source name, URL, license, and retrieval
-date for every dataset loaded into the database.
+This table records, for every dataset loaded into the database: `duckdb_table`,
+`source_name`, `url`, `license`, `notes`, `retrieved`, and — so methodology travels
+with the data — **`methodology`** (how the source collects and defines the data) and
+**`series_breaks`** (boundaries across which the numbers are NOT comparable). The two
+most important flags recorded there: FARS raw `DRUNK_DR` vs the NHTSA imputed BAC≥0.08
+series (different measures), and the FBI UCR SRS→NIBRS break at Jan 1, 2021. Keep these
+in sync with the per-source sections above.
 
 ---
 

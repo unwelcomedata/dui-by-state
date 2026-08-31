@@ -153,14 +153,27 @@ def to_interim(df: pd.DataFrame, name: str) -> Path:
 # Source registry — written to _sources table at the end
 _source_registry: list[dict] = []
 
-def register_source(table: str, name: str, url: str, license: str, notes: str = "") -> None:
+def register_source(
+    table: str,
+    name: str,
+    url: str,
+    license: str,
+    notes: str = "",
+    methodology: str = "",
+    series_breaks: str = "",
+) -> None:
     _source_registry.append({
-        "duckdb_table": table,
-        "source_name":  name,
-        "url":          url,
-        "license":      license,
-        "notes":        notes,
-        "retrieved":    TODAY,
+        "duckdb_table":  table,
+        "source_name":   name,
+        "url":           url,
+        "license":       license,
+        "notes":         notes,
+        "retrieved":     TODAY,
+        # methodology / series_breaks travel with provenance so a re-ingest does not
+        # drop these columns. See SOURCES.md for the full per-source write-ups; the
+        # values currently in the DB were populated there (governance back-fill).
+        "methodology":   methodology,
+        "series_breaks": series_breaks,
     })
 
 
