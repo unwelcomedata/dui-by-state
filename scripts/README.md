@@ -24,7 +24,7 @@ python scripts/clean_enforcement.py
 python scripts/compute_bac_testing_rates.py
 
 # 5. Final export — join all tables → CSV/Excel/Parquet + codebook
-python scripts/prepare_export_v3.py
+python scripts/prepare_export_v4.py
 ```
 
 ## Script descriptions
@@ -35,7 +35,7 @@ python scripts/prepare_export_v3.py
 | `scrape_nasid.py` | nasid.org | `nasid_enforcement` | Playwright-based, cached. Rate-limited. |
 | `clean_enforcement.py` | `nasid_enforcement` | `nasid_enforcement_clean` | Text → booleans. Post-hoc fix: NC/AR threshold corrected to 4. |
 | `compute_bac_testing_rates.py` | `data/raw/fars_2024.zip` | `fars_bac_testing_2024` | Extracts BAC test type breakdown per state |
-| `prepare_export_v3.py` | All clean tables | `export/dui_by_state_v3.*` | 51 rows × 57 cols. Generates codebook. |
+| `prepare_export_v4.py` | All clean tables | `export/dui_by_state_v4.*` | 51 rows × 48 cols. Generates codebook. |
 
 ## DuckDB tables
 

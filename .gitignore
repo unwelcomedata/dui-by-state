@@ -62,9 +62,11 @@ env/
 *.swp
 *.swo
 
-# ── Removed from active project (archived) ───────────────────────────────────
-docs/
-notebooks/05-analysis.ipynb
+# ── Release branch: publish curated charts + dataset (force-added) ───────────
+# docs/ holds the published chart PNGs; export CSV+codebook are the public dataset.
+# These are intentionally tracked on the release branch only.
+!docs/
+notebooks/
 
 # ── Logs & temp ───────────────────────────────────────────────────────────────
 *.log
