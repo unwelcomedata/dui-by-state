@@ -1,4 +1,4 @@
-**[@unwelcomedata](https://unwelcomedata.github.io/dui-by-state/)** · data from public sources
+**[@unwelcomedata](https://github.com/unwelcomedata)** · data from public sources
 
 # DUI by state: what the laws are, and what the deaths say
 
