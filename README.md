@@ -18,25 +18,32 @@ rates once you account for how rural and how driven a state is.
 
 ## The charts
 
-**Most DUI deaths involve drivers with no prior DUI conviction.** First-time vs
-repeat offenders among drivers in fatal alcohol-impaired crashes.
+_Click any chart to open it at full resolution._
 
-![Most DUI deaths involve drivers with no prior DUI conviction](docs/first_time_vs_repeat.png)
+**Most DUI deaths involve drivers with no prior DUI conviction.** Share of drivers
+in fatal alcohol-impaired crashes who had a prior DUI conviction vs. none, with
+states grouped by their felony-DUI threshold. Note: *no prior conviction is not
+the same as a first time driving impaired* — it means no prior on record.
 
-**When does a DUI become a felony?** The blood-alcohol level or repeat count at
-which a state can charge a DUI as a felony varies widely.
+[![Most DUI deaths involve drivers with no prior DUI conviction](docs/first_time_vs_repeat.png)](docs/first_time_vs_repeat.png)
 
-![When a DUI becomes a felony, by state](docs/felony_threshold.png)
+**When does a DUI become a felony?** The number of DUI convictions that triggers a
+felony charge, by state — always a misdemeanor, or a felony on the 2nd, 3rd, or
+4th offense.
+
+[![When a DUI becomes a felony, by state](docs/felony_threshold.png)](docs/felony_threshold.png)
 
 **How long is the window to trigger a felony?** The "lookback period" — how many
-years back a state counts prior offenses toward a felony charge.
+years back a state counts prior offenses toward a felony charge (short 5–7 yr,
+standard 10–15 yr, lifetime, or no felony law at all).
 
-![Felony lookback period by state](docs/felony_lookback.png)
+[![Felony lookback period by state](docs/felony_lookback.png)](docs/felony_lookback.png)
 
-**Can they stop you AND take your car?** Two enforcement powers combined —
-sobriety checkpoints and vehicle impound/forfeiture — mapped together.
+**Can they stop you AND take your car?** Two enforcement powers mapped together:
+*checkpoints* = sobriety checkpoints are legal; *impound* = mandatory vehicle
+seizure on a DUI. Dark = a state has both; gray = neither.
 
-![DUI enforcement mechanisms by state](docs/enforcement_matrix.png)
+[![DUI enforcement mechanisms by state](docs/enforcement_matrix.png)](docs/enforcement_matrix.png)
 
 ---
 
