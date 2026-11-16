@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="Helvetica, Arial, sans-serif">
+
+<rect width="1600" height="900" fill="#FBF8F0"/>
+<rect width="1600" height="130" fill="#003049"/>
+<text x="60.00" y="66.00" fill="#FFFFFF" font-size="54" font-weight="bold">DUI by State</text>
+<text x="60.00" y="104.00" fill="#94D2BD" font-size="28" font-weight="bold">Laws, enforcement and fatal-crash data for 50 states + DC</text>
+<text x="60.00" y="166.44" fill="#003049" font-size="20" font-weight="bold">Prior DWI convictions among impaired drivers in fatal crashes</text>
+<text x="60.00" y="182.44" fill="#6B7280" font-size="14">FARS 2024, drivers with known history; impaired = driver-impairment code 9</text>
+<text x="60.00" y="272.26" fill="#0A9396" font-size="69" font-weight="bold">92.5%</text>
+<text x="267.00" y="241.90" fill="#003049" font-size="18" font-weight="bold">of impaired drivers in fatal crashes had</text>
+<text x="267.00" y="263.02" fill="#003049" font-size="18" font-weight="bold">no prior DWI conviction on record</text>
+<text x="267.00" y="282.82" fill="#6B7280" font-size="14">5,360 impaired drivers with known history, 403 with a prior</text>
+<text x="290.00" y="309.88" fill="#6B7280" font-size="12">Felony threshold group</text>
+<text x="278.00" y="328.62" fill="#003049" font-size="14" font-weight="bold" text-anchor="end">National (51 jurisdictions)</text>
+<rect class="m" data-id="A:nat:noprior" data-x0="290.00" data-track="371.00" data-max="100" x="290.00" y="313.84" width="343.11" height="21.12" fill="#0A9396"/><!-- nat no prior 92.48% -> 343.1px -->
+<rect class="m" data-id="A:nat:prior" data-x0="633.11" data-track="371.00" data-max="100" x="633.11" y="313.84" width="27.89" height="21.12" fill="#EE9B00"/><!-- nat prior 7.52% -> 27.9px -->
+<text x="300.00" y="328.62" fill="#FFFFFF" font-size="13" font-weight="bold">92.5%</text>
+<text x="671.00" y="328.62" fill="#8A5A00" font-size="13" font-weight="bold">7.5% had a prior</text>
+<text x="278.00" y="358.98" fill="#003049" font-size="14" font-weight="bold" text-anchor="end">Always a misdemeanor (3)</text>
+<rect class="m" data-id="A:Always a misdemeanor:noprior" data-x0="290.00" data-track="371.00" data-max="100" x="290.00" y="344.20" width="360.84" height="21.12" fill="#0A9396"/><!-- Always a misdemeanor no prior 97.26% -> 360.8px -->
+<rect class="m" data-id="A:Always a misdemeanor:prior" data-x0="650.84" data-track="371.00" data-max="100" x="650.84" y="344.20" width="10.16" height="21.12" fill="#EE9B00"/><!-- Always a misdemeanor prior 2.74% -> 10.2px -->
+<text x="300.00" y="358.98" fill="#FFFFFF" font-size="13" font-weight="bold">97.3%</text>
+<text x="671.00" y="358.98" fill="#8A5A00" font-size="13" font-weight="bold">2.7% had a prior</text>
+<text x="278.00" y="389.34" fill="#003049" font-size="14" font-weight="bold" text-anchor="end">Felony on 4th (20)</text>
+<rect class="m" data-id="A:Felony on 4th:noprior" data-x0="290.00" data-track="371.00" data-max="100" x="290.00" y="374.56" width="333.91" height="21.12" fill="#0A9396"/><!-- Felony on 4th no prior 90.00% -> 333.9px -->
+<rect class="m" data-id="A:Felony on 4th:prior" data-x0="623.91" data-track="371.00" data-max="100" x="623.91" y="374.56" width="37.09" height="21.12" fill="#EE9B00"/><!-- Felony on 4th prior 10.00% -> 37.1px -->
+<text x="300.00" y="389.34" fill="#FFFFFF" font-size="13" font-weight="bold">90.0%</text>
+<text x="671.00" y="389.34" fill="#8A5A00" font-size="13" font-weight="bold">10.0% had a prior</text>
+<text x="278.00" y="419.70" fill="#003049" font-size="14" font-weight="bold" text-anchor="end">Felony on 3rd (24)</text>
+<rect class="m" data-id="A:Felony on 3rd:noprior" data-x0="290.00" data-track="371.00" data-max="100" x="290.00" y="404.92" width="352.77" height="21.12" fill="#0A9396"/><!-- Felony on 3rd no prior 95.09% -> 352.8px -->
+<rect class="m" data-id="A:Felony on 3rd:prior" data-x0="642.77" data-track="371.00" data-max="100" x="642.77" y="404.92" width="18.23" height="21.12" fill="#EE9B00"/><!-- Felony on 3rd prior 4.91% -> 18.2px -->
+<text x="300.00" y="419.70" fill="#FFFFFF" font-size="13" font-weight="bold">95.1%</text>
+<text x="671.00" y="419.70" fill="#8A5A00" font-size="13" font-weight="bold">4.9% had a prior</text>
+<text x="278.00" y="450.06" fill="#003049" font-size="14" font-weight="bold" text-anchor="end">Felony on 2nd (4)</text>
+<rect class="m" data-id="A:Felony on 2nd:noprior" data-x0="290.00" data-track="371.00" data-max="100" x="290.00" y="435.28" width="339.77" height="21.12" fill="#0A9396"/><!-- Felony on 2nd no prior 91.58% -> 339.8px -->
+<rect class="m" data-id="A:Felony on 2nd:prior" data-x0="629.77" data-track="371.00" data-max="100" x="629.77" y="435.28" width="31.23" height="21.12" fill="#EE9B00"/><!-- Felony on 2nd prior 8.42% -> 31.2px -->
+<text x="300.00" y="450.06" fill="#FFFFFF" font-size="13" font-weight="bold">91.6%</text>
+<text x="671.00" y="450.06" fill="#8A5A00" font-size="13" font-weight="bold">8.4% had a prior</text>
+<text x="290.00" y="468.28" fill="#6B7280" font-size="12">No prior conviction on record is not the same as never having driven impaired.</text>
+<text x="290.00" y="484.12" fill="#6B7280" font-size="12">Mississippi: 0 of 49 impaired drivers show a prior; likely a reporting gap, still counted.</text>
+<line x1="60" y1="507.12" x2="760" y2="507.12" stroke="#E9D8A6" stroke-width="3"/>
+<text x="60.00" y="542.56" fill="#003049" font-size="20" font-weight="bold">Number of DUI convictions that makes a DUI a felony</text>
+<text x="60.00" y="558.56" fill="#6B7280" font-size="14">One tile per jurisdiction (50 states + DC), grouped by threshold</text>
+<text x="60.00" y="608.44" fill="#EE9B00" font-size="15" font-weight="bold">Felony on 2nd</text>
+<text x="238.20" y="608.44" fill="#6B7280" font-size="13">4 jurisdictions</text>
+<rect class="m" data-id="B:CT" data-cat="Felony on 2nd" x="60.00" y="615.04" width="24" height="24" rx="3" fill="#EE9B00"/>
+<text x="72.00" y="630.40" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">CT</text>
+<rect class="m" data-id="B:IN" data-cat="Felony on 2nd" x="88.40" y="615.04" width="24" height="24" rx="3" fill="#EE9B00"/>
+<text x="100.40" y="630.40" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">IN</text>
+<rect class="m" data-id="B:NY" data-cat="Felony on 2nd" x="116.80" y="615.04" width="24" height="24" rx="3" fill="#EE9B00"/>
+<text x="128.80" y="630.40" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NY</text>
+<rect class="m" data-id="B:OK" data-cat="Felony on 2nd" x="145.20" y="615.04" width="24" height="24" rx="3" fill="#EE9B00"/>
+<text x="157.20" y="630.40" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">OK</text>
+<text x="60.00" y="661.32" fill="#0A9396" font-size="15" font-weight="bold">Felony on 3rd</text>
+<text x="238.20" y="661.32" fill="#6B7280" font-size="13">24 jurisdictions</text>
+<rect class="m" data-id="B:AK" data-cat="Felony on 3rd" x="60.00" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="72.00" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">AK</text>
+<rect class="m" data-id="B:AZ" data-cat="Felony on 3rd" x="88.40" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="100.40" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">AZ</text>
+<rect class="m" data-id="B:DE" data-cat="Felony on 3rd" x="116.80" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="128.80" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">DE</text>
+<rect class="m" data-id="B:FL" data-cat="Felony on 3rd" x="145.20" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="157.20" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">FL</text>
+<rect class="m" data-id="B:HI" data-cat="Felony on 3rd" x="173.60" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="185.60" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">HI</text>
+<rect class="m" data-id="B:IA" data-cat="Felony on 3rd" x="202.00" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="214.00" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">IA</text>
+<rect class="m" data-id="B:ID" data-cat="Felony on 3rd" x="230.40" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="242.40" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">ID</text>
+<rect class="m" data-id="B:IL" data-cat="Felony on 3rd" x="258.80" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="270.80" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">IL</text>
+<rect class="m" data-id="B:KS" data-cat="Felony on 3rd" x="287.20" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="299.20" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">KS</text>
+<rect class="m" data-id="B:LA" data-cat="Felony on 3rd" x="315.60" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="327.60" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">LA</text>
+<rect class="m" data-id="B:MA" data-cat="Felony on 3rd" x="344.00" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="356.00" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MA</text>
+<rect class="m" data-id="B:ME" data-cat="Felony on 3rd" x="372.40" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="384.40" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">ME</text>
+<rect class="m" data-id="B:MI" data-cat="Felony on 3rd" x="400.80" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="412.80" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MI</text>
+<rect class="m" data-id="B:MO" data-cat="Felony on 3rd" x="429.20" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="441.20" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MO</text>
+<rect class="m" data-id="B:MS" data-cat="Felony on 3rd" x="457.60" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="469.60" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MS</text>
+<rect class="m" data-id="B:NV" data-cat="Felony on 3rd" x="486.00" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="498.00" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NV</text>
+<rect class="m" data-id="B:RI" data-cat="Felony on 3rd" x="514.40" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="526.40" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">RI</text>
+<rect class="m" data-id="B:SC" data-cat="Felony on 3rd" x="542.80" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="554.80" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">SC</text>
+<rect class="m" data-id="B:SD" data-cat="Felony on 3rd" x="571.20" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="583.20" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">SD</text>
+<rect class="m" data-id="B:TX" data-cat="Felony on 3rd" x="599.60" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="611.60" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">TX</text>
+<rect class="m" data-id="B:UT" data-cat="Felony on 3rd" x="628.00" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="640.00" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">UT</text>
+<rect class="m" data-id="B:VA" data-cat="Felony on 3rd" x="656.40" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="668.40" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">VA</text>
+<rect class="m" data-id="B:VT" data-cat="Felony on 3rd" x="684.80" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="696.80" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">VT</text>
+<rect class="m" data-id="B:WV" data-cat="Felony on 3rd" x="713.20" y="667.92" width="24" height="24" rx="3" fill="#0A9396"/>
+<text x="725.20" y="683.28" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">WV</text>
+<text x="60.00" y="714.20" fill="#023047" font-size="15" font-weight="bold">Felony on 4th</text>
+<text x="238.20" y="714.20" fill="#6B7280" font-size="13">20 jurisdictions</text>
+<rect class="m" data-id="B:AL" data-cat="Felony on 4th" x="60.00" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="72.00" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">AL</text>
+<rect class="m" data-id="B:AR" data-cat="Felony on 4th" x="88.40" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="100.40" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">AR</text>
+<rect class="m" data-id="B:CA" data-cat="Felony on 4th" x="116.80" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="128.80" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">CA</text>
+<rect class="m" data-id="B:CO" data-cat="Felony on 4th" x="145.20" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="157.20" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">CO</text>
+<rect class="m" data-id="B:GA" data-cat="Felony on 4th" x="173.60" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="185.60" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">GA</text>
+<rect class="m" data-id="B:KY" data-cat="Felony on 4th" x="202.00" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="214.00" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">KY</text>
+<rect class="m" data-id="B:MN" data-cat="Felony on 4th" x="230.40" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="242.40" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MN</text>
+<rect class="m" data-id="B:MT" data-cat="Felony on 4th" x="258.80" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="270.80" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MT</text>
+<rect class="m" data-id="B:NC" data-cat="Felony on 4th" x="287.20" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="299.20" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NC</text>
+<rect class="m" data-id="B:ND" data-cat="Felony on 4th" x="315.60" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="327.60" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">ND</text>
+<rect class="m" data-id="B:NE" data-cat="Felony on 4th" x="344.00" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="356.00" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NE</text>
+<rect class="m" data-id="B:NH" data-cat="Felony on 4th" x="372.40" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="384.40" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NH</text>
+<rect class="m" data-id="B:NM" data-cat="Felony on 4th" x="400.80" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="412.80" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NM</text>
+<rect class="m" data-id="B:OH" data-cat="Felony on 4th" x="429.20" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="441.20" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">OH</text>
+<rect class="m" data-id="B:OR" data-cat="Felony on 4th" x="457.60" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="469.60" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">OR</text>
+<rect class="m" data-id="B:PA" data-cat="Felony on 4th" x="486.00" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="498.00" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">PA</text>
+<rect class="m" data-id="B:TN" data-cat="Felony on 4th" x="514.40" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="526.40" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">TN</text>
+<rect class="m" data-id="B:WA" data-cat="Felony on 4th" x="542.80" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="554.80" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">WA</text>
+<rect class="m" data-id="B:WI" data-cat="Felony on 4th" x="571.20" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="583.20" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">WI</text>
+<rect class="m" data-id="B:WY" data-cat="Felony on 4th" x="599.60" y="720.80" width="24" height="24" rx="3" fill="#023047"/>
+<text x="611.60" y="736.16" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">WY</text>
+<text x="60.00" y="767.08" fill="#AE2012" font-size="15" font-weight="bold">Always a misdemeanor</text>
+<text x="238.20" y="767.08" fill="#6B7280" font-size="13">3 jurisdictions</text>
+<rect class="m" data-id="B:DC" data-cat="Always a misdemeanor" x="60.00" y="773.68" width="24" height="24" rx="3" fill="#AE2012"/>
+<text x="72.00" y="789.04" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">DC</text>
+<rect class="m" data-id="B:MD" data-cat="Always a misdemeanor" x="88.40" y="773.68" width="24" height="24" rx="3" fill="#AE2012"/>
+<text x="100.40" y="789.04" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">MD</text>
+<rect class="m" data-id="B:NJ" data-cat="Always a misdemeanor" x="116.80" y="773.68" width="24" height="24" rx="3" fill="#AE2012"/>
+<text x="128.80" y="789.04" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">NJ</text>
+<text x="840.00" y="169.16" fill="#003049" font-size="23" font-weight="bold">Killed drivers with a known BAC result, by testing law</text>
+<text x="840.00" y="187.56" fill="#6B7280" font-size="16">Each dot is one jurisdiction. Tick = simple average of jurisdictions (not weighted by drivers).</text>
+<text x="840.00" y="242.36" fill="#0A9396" font-size="16" font-weight="bold">Mandatory testing law (29)</text>
+<line x1="852.00" y1="273.44" x2="1528.00" y2="273.44" stroke="#E9D8A6" stroke-width="3"/>
+<circle class="m" data-id="D:yes:CA" data-x0="852.00" data-track="676.00" data-max="100" cx="1175.80" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- CA 47.9 -->
+<circle class="m" data-id="D:yes:ID" data-x0="852.00" data-track="676.00" data-max="100" cx="1200.82" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- ID 51.6 -->
+<circle class="m" data-id="D:yes:OK" data-x0="852.00" data-track="676.00" data-max="100" cx="1228.53" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- OK 55.7 -->
+<circle class="m" data-id="D:yes:IN" data-x0="852.00" data-track="676.00" data-max="100" cx="1266.39" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- IN 61.3 -->
+<circle class="m" data-id="D:yes:MO" data-x0="852.00" data-track="676.00" data-max="100" cx="1308.98" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- MO 67.6 -->
+<circle class="m" data-id="D:yes:WV" data-x0="852.00" data-track="676.00" data-max="100" cx="1317.09" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- WV 68.8 -->
+<circle class="m" data-id="D:yes:KS" data-x0="852.00" data-track="676.00" data-max="100" cx="1323.17" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- KS 69.7 -->
+<circle class="m" data-id="D:yes:ND" data-x0="852.00" data-track="676.00" data-max="100" cx="1354.27" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- ND 74.3 -->
+<circle class="m" data-id="D:yes:NE" data-x0="852.00" data-track="676.00" data-max="100" cx="1354.27" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- NE 74.3 -->
+<circle class="m" data-id="D:yes:ME" data-x0="852.00" data-track="676.00" data-max="100" cx="1363.73" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- ME 75.7 -->
+<circle class="m" data-id="D:yes:AR" data-x0="852.00" data-track="676.00" data-max="100" cx="1364.41" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- AR 75.8 -->
+<circle class="m" data-id="D:yes:KY" data-x0="852.00" data-track="676.00" data-max="100" cx="1367.11" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- KY 76.2 -->
+<circle class="m" data-id="D:yes:SC" data-x0="852.00" data-track="676.00" data-max="100" cx="1368.46" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- SC 76.4 -->
+<circle class="m" data-id="D:yes:HI" data-x0="852.00" data-track="676.00" data-max="100" cx="1395.50" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- HI 80.4 -->
+<circle class="m" data-id="D:yes:WA" data-x0="852.00" data-track="676.00" data-max="100" cx="1395.50" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- WA 80.4 -->
+<circle class="m" data-id="D:yes:UT" data-x0="852.00" data-track="676.00" data-max="100" cx="1411.73" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- UT 82.8 -->
+<circle class="m" data-id="D:yes:OH" data-x0="852.00" data-track="676.00" data-max="100" cx="1415.78" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- OH 83.4 -->
+<circle class="m" data-id="D:yes:SD" data-x0="852.00" data-track="676.00" data-max="100" cx="1418.49" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- SD 83.8 -->
+<circle class="m" data-id="D:yes:OR" data-x0="852.00" data-track="676.00" data-max="100" cx="1421.19" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- OR 84.2 -->
+<circle class="m" data-id="D:yes:MN" data-x0="852.00" data-track="676.00" data-max="100" cx="1422.54" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- MN 84.4 -->
+<circle class="m" data-id="D:yes:MD" data-x0="852.00" data-track="676.00" data-max="100" cx="1430.66" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- MD 85.6 -->
+<circle class="m" data-id="D:yes:VA" data-x0="852.00" data-track="676.00" data-max="100" cx="1434.71" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- VA 86.2 -->
+<circle class="m" data-id="D:yes:LA" data-x0="852.00" data-track="676.00" data-max="100" cx="1437.42" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- LA 86.6 -->
+<circle class="m" data-id="D:yes:CO" data-x0="852.00" data-track="676.00" data-max="100" cx="1442.15" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- CO 87.3 -->
+<circle class="m" data-id="D:yes:MT" data-x0="852.00" data-track="676.00" data-max="100" cx="1450.94" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- MT 88.6 -->
+<circle class="m" data-id="D:yes:NH" data-x0="852.00" data-track="676.00" data-max="100" cx="1484.06" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- NH 93.5 -->
+<circle class="m" data-id="D:yes:MA" data-x0="852.00" data-track="676.00" data-max="100" cx="1489.47" cy="283.06" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- MA 94.3 -->
+<circle class="m" data-id="D:yes:CT" data-x0="852.00" data-track="676.00" data-max="100" cx="1492.17" cy="263.82" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- CT 94.7 -->
+<circle class="m" data-id="D:yes:VT" data-x0="852.00" data-track="676.00" data-max="100" cx="1512.45" cy="273.44" r="3.85" fill="#0A9396" fill-opacity="0.85"/><!-- VT 97.7 -->
+<line class="m" data-id="D:yes:mean" data-x0="852.00" data-track="676.00" data-max="100" x1="1380.96" y1="254.20" x2="1380.96" y2="292.68" stroke="#003049" stroke-width="4"/><!-- yes mean 78.248 -->
+<text x="1388.96" y="242.36" fill="#003049" font-size="16" font-weight="bold">avg 78.2%</text>
+<text x="840.00" y="300.08" fill="#AE2012" font-size="16" font-weight="bold">No mandatory law (22)</text>
+<line x1="852.00" y1="331.16" x2="1528.00" y2="331.16" stroke="#E9D8A6" stroke-width="3"/>
+<circle class="m" data-id="D:no:MS" data-x0="852.00" data-track="676.00" data-max="100" cx="916.90" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- MS 9.6 -->
+<circle class="m" data-id="D:no:NM" data-x0="852.00" data-track="676.00" data-max="100" cx="958.81" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- NM 15.8 -->
+<circle class="m" data-id="D:no:NY" data-x0="852.00" data-track="676.00" data-max="100" cx="1042.63" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- NY 28.2 -->
+<circle class="m" data-id="D:no:FL" data-x0="852.00" data-track="676.00" data-max="100" cx="1095.36" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- FL 36.0 -->
+<circle class="m" data-id="D:no:NC" data-x0="852.00" data-track="676.00" data-max="100" cx="1135.24" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- NC 41.9 -->
+<circle class="m" data-id="D:no:GA" data-x0="852.00" data-track="676.00" data-max="100" cx="1145.38" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- GA 43.4 -->
+<circle class="m" data-id="D:no:IA" data-x0="852.00" data-track="676.00" data-max="100" cx="1156.88" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- IA 45.1 -->
+<circle class="m" data-id="D:no:WI" data-x0="852.00" data-track="676.00" data-max="100" cx="1167.69" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- WI 46.7 -->
+<circle class="m" data-id="D:no:DC" data-x0="852.00" data-track="676.00" data-max="100" cx="1172.42" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- DC 47.4 -->
+<circle class="m" data-id="D:no:AZ" data-x0="852.00" data-track="676.00" data-max="100" cx="1188.65" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- AZ 49.8 -->
+<circle class="m" data-id="D:no:TX" data-x0="852.00" data-track="676.00" data-max="100" cx="1195.41" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- TX 50.8 -->
+<circle class="m" data-id="D:no:WY" data-x0="852.00" data-track="676.00" data-max="100" cx="1215.69" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- WY 53.8 -->
+<circle class="m" data-id="D:no:MI" data-x0="852.00" data-track="676.00" data-max="100" cx="1221.77" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- MI 54.7 -->
+<circle class="m" data-id="D:no:AK" data-x0="852.00" data-track="676.00" data-max="100" cx="1243.40" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- AK 57.9 -->
+<circle class="m" data-id="D:no:AL" data-x0="852.00" data-track="676.00" data-max="100" cx="1246.78" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- AL 58.4 -->
+<circle class="m" data-id="D:no:TN" data-x0="852.00" data-track="676.00" data-max="100" cx="1252.87" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- TN 59.3 -->
+<circle class="m" data-id="D:no:DE" data-x0="852.00" data-track="676.00" data-max="100" cx="1265.04" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- DE 61.1 -->
+<circle class="m" data-id="D:no:NV" data-x0="852.00" data-track="676.00" data-max="100" cx="1267.74" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- NV 61.5 -->
+<circle class="m" data-id="D:no:IL" data-x0="852.00" data-track="676.00" data-max="100" cx="1327.23" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- IL 70.3 -->
+<circle class="m" data-id="D:no:PA" data-x0="852.00" data-track="676.00" data-max="100" cx="1364.41" cy="331.16" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- PA 75.8 -->
+<circle class="m" data-id="D:no:NJ" data-x0="852.00" data-track="676.00" data-max="100" cx="1379.96" cy="340.78" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- NJ 78.1 -->
+<circle class="m" data-id="D:no:RI" data-x0="852.00" data-track="676.00" data-max="100" cx="1469.19" cy="321.54" r="3.85" fill="#AE2012" fill-opacity="0.85"/><!-- RI 91.3 -->
+<line class="m" data-id="D:no:mean" data-x0="852.00" data-track="676.00" data-max="100" x1="1201.34" y1="311.92" x2="1201.34" y2="350.40" stroke="#003049" stroke-width="4"/><!-- no mean 51.677 -->
+<text x="1209.34" y="300.08" fill="#003049" font-size="16" font-weight="bold">avg 51.7%</text>
+<text x="852.00" y="363.72" fill="#6B7280" font-size="13" text-anchor="middle">0%</text>
+<text x="1021.00" y="363.72" fill="#6B7280" font-size="13" text-anchor="middle">25%</text>
+<text x="1190.00" y="363.72" fill="#6B7280" font-size="13" text-anchor="middle">50%</text>
+<text x="1359.00" y="363.72" fill="#6B7280" font-size="13" text-anchor="middle">75%</text>
+<text x="1528.00" y="363.72" fill="#6B7280" font-size="13" text-anchor="middle">100%</text>
+<text x="840.00" y="382.96" fill="#6B7280" font-size="13">Share of killed drivers with a known BAC result. Lowest MS 9.6%, highest VT 97.7%.</text>
+<line x1="840" y1="405.96" x2="1540" y2="405.96" stroke="#E9D8A6" stroke-width="3"/>
+<text x="840.00" y="444.12" fill="#003049" font-size="23" font-weight="bold">Alcohol-impaired deaths per 100 million vehicle miles</text>
+<text x="840.00" y="462.52" fill="#6B7280" font-size="16">Top and bottom five of 51. NHTSA imputed BAC 0.08+; FHWA 2022 miles.</text>
+<text x="870.00" y="531.06" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">SC</text>
+<rect class="m" data-id="E:SC" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="520.80" width="600.80" height="13.68" fill="#AE2012"/><!-- SC 0.7033 -> 600.8px -->
+<text x="1488.80" y="531.06" fill="#AE2012" font-size="14" font-weight="bold">0.70</text>
+<text x="870.00" y="550.06" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">TX</text>
+<rect class="m" data-id="E:TX" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="539.80" width="505.02" height="13.68" fill="#AE2012"/><!-- TX 0.5912 -> 505.0px -->
+<text x="1393.02" y="550.06" fill="#AE2012" font-size="14" font-weight="bold">0.59</text>
+<text x="870.00" y="569.06" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">AZ</text>
+<rect class="m" data-id="E:AZ" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="558.80" width="495.34" height="13.68" fill="#AE2012"/><!-- AZ 0.5798 -> 495.3px -->
+<text x="1383.34" y="569.06" fill="#AE2012" font-size="14" font-weight="bold">0.58</text>
+<text x="870.00" y="588.06" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">MT</text>
+<rect class="m" data-id="E:MT" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="577.80" width="469.24" height="13.68" fill="#AE2012"/><!-- MT 0.5493 -> 469.2px -->
+<text x="1357.24" y="588.06" fill="#AE2012" font-size="14" font-weight="bold">0.55</text>
+<text x="870.00" y="607.06" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">OR</text>
+<rect class="m" data-id="E:OR" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="596.80" width="419.22" height="13.68" fill="#AE2012"/><!-- OR 0.4907 -> 419.2px -->
+<text x="1307.22" y="607.06" fill="#AE2012" font-size="14" font-weight="bold">0.49</text>
+<text x="840.00" y="514.88" fill="#6B7280" font-size="13" font-weight="bold">Highest five</text>
+<text x="870.00" y="642.34" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">MA</text>
+<rect class="m" data-id="E:MA" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="632.08" width="136.71" height="13.68" fill="#0A9396"/><!-- MA 0.1600 -> 136.7px -->
+<text x="1024.71" y="642.34" fill="#0A9396" font-size="14" font-weight="bold">0.16</text>
+<text x="870.00" y="661.34" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">MN</text>
+<rect class="m" data-id="E:MN" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="651.08" width="154.29" height="13.68" fill="#0A9396"/><!-- MN 0.1806 -> 154.3px -->
+<text x="1042.29" y="661.34" fill="#0A9396" font-size="14" font-weight="bold">0.18</text>
+<text x="870.00" y="680.34" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">NJ</text>
+<rect class="m" data-id="E:NJ" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="670.08" width="165.02" height="13.68" fill="#0A9396"/><!-- NJ 0.1932 -> 165.0px -->
+<text x="1053.02" y="680.34" fill="#0A9396" font-size="14" font-weight="bold">0.19</text>
+<text x="870.00" y="699.34" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">UT</text>
+<rect class="m" data-id="E:UT" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="689.08" width="184.27" height="13.68" fill="#0A9396"/><!-- UT 0.2157 -> 184.3px -->
+<text x="1072.27" y="699.34" fill="#0A9396" font-size="14" font-weight="bold">0.22</text>
+<text x="870.00" y="718.34" fill="#003049" font-size="15" font-weight="bold" text-anchor="end">RI</text>
+<rect class="m" data-id="E:RI" data-x0="880.00" data-track="600.80" data-max="0.703287" x="880.00" y="708.08" width="195.93" height="13.68" fill="#0A9396"/><!-- RI 0.2294 -> 195.9px -->
+<text x="1083.93" y="718.34" fill="#0A9396" font-size="14" font-weight="bold">0.23</text>
+<text x="840.00" y="626.16" fill="#6B7280" font-size="13" font-weight="bold">Lowest five</text>
+<line x1="800" y1="150" x2="800" y2="818" stroke="#E9D8A6" stroke-width="3"/>
+<rect x="0" y="834" width="1600" height="66" fill="#003049"/>
+<text x="60.00" y="860.40" fill="#E9D8A6" font-size="24" font-weight="bold">@unwelcomedata</text>
+<text x="1540.00" y="860.40" fill="#E9D8A6" font-size="17" text-anchor="end">Data from public sources: NHTSA FARS 2024, NASID, NCSL, FHWA, state statutes</text>
+<text x="60.00" y="885.48" fill="#E9D8A6" font-size="15">Laws as compiled in 2026. FARS counts convictions on record, not impairment history; per-mile rates use 2022 FHWA miles.</text>
+</svg>
