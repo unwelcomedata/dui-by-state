@@ -16,6 +16,10 @@ rates once you account for how rural and how driven a state is.
 
 ---
 
+[![DUI by state infographic](docs/infographic_dui.png)](docs/infographic_dui.png)
+
+---
+
 ## The charts
 
 _Click any chart to open it at full resolution._
